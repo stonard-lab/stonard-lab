@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - DesiWear</title>
+    <link rel="icon" href="images/logo.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <style>
+        /* Product Details Specific Styles */
+        .product-details-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .breadcrumbs {
+            padding: 1.5rem 0;
+            font-size: 1.4rem;
+            color: var(--text-light);
+        }
+        
+        .product-main {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+        
+        .product-gallery {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .thumbnail-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 80px;
+        }
+        
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 1px solid var(--gray-color);
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        
+        .thumbnail:hover, .thumbnail.active {
+            border-color: var(--primary-color);
+        }
+        
+        .main-image-container {
+            flex: 1;
+            position: relative;
+        }
+        
+        .main-image {
+            width: 100%;
+            height: auto;
+            max-height: 600px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        
+        .zoom-indicator {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            background-color: rgba(0,0,0,0.7);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 1.2rem;
+        }
+        
+        .product-info {
+            padding: 1rem;
+        }
+        
+        .product-title {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+        
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .current-price {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .original-price {
+            font-size: 1.8rem;
+            text-decoration: line-through;
+            color: var(--text-light);
+        }
+        
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stars {
+            color: var(--secondary-color);
+        }
+        
+        .review-count {
+            color: var(--text-light);
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        
+        .availability {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            font-size: 1.6rem;
+        }
+        
+        .in-stock {
+            color: var(--success-color);
+        }
+        
+        .low-stock {
+            color: var(--secondary-color);
+        }
+        
+        .out-of-stock {
+            color: var(--error-color);
+        }
+        
+        .variant-selector {
+            margin-bottom: 2rem;
+        }
+        
+        .variant-title {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .size-options {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .size-option {
+            padding: 0.8rem 1.5rem;
+            border: 1px solid var(--gray-color);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .size-option:hover, .size-option.selected {
+            border-color: var(--primary-color);
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .color-options {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .color-option {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .color-option.selected {
+            border-color: var(--dark-color);
+        }
+        
+        .color-option.selected::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border: 1px solid var(--dark-color);
+            border-radius: 50%;
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        
+        .quantity-control {
+            display: flex;
+            border: 1px solid var(--gray-color);
+            border-radius: 4px;
+        }
+        
+        .quantity-btn {
+            width: 40px;
+            height: 40px;
+            background-color: var(--light-color);
+            border: none;
+            font-size: 1.6rem;
+            cursor: pointer;
+        }
+        
+        .quantity-input {
+            width: 60px;
+            height: 40px;
+            text-align: center;
+            border: none;
+            border-left: 1px solid var(--gray-color);
+            border-right: 1px solid var(--gray-color);
+            font-size: 1.6rem;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .btn-add-to-cart {
+            flex: 1;
+            padding: 1.5rem;
+            font-size: 1.6rem;
+        }
+        
+        .btn-wishlist {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--light-color);
+            border: 1px solid var(--gray-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .btn-wishlist:hover {
+            color: var(--error-color);
+            border-color: var(--error-color);
+        }
+        
+        .btn-wishlist.active {
+            color: var(--error-color);
+            border-color: var(--error-color);
+        }
+        
+        .trust-badges {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            padding: 2rem 0;
+            border-top: 1px solid var(--gray-color);
+            border-bottom: 1px solid var(--gray-color);
+            margin-bottom: 3rem;
+        }
+        
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .product-tabs {
+            margin-top: 5rem;
+        }
+        
+        .tab-headers {
+            display: flex;
+            border-bottom: 1px solid var(--gray-color);
+        }
+        
+        .tab-header {
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            font-weight: 600;
+            position: relative;
+        }
+        
+        .tab-header.active {
+            color: var(--primary-color);
+        }
+        
+        .tab-header.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+        
+        .tab-content {
+            padding: 2rem 0;
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .product-story h3, .specifications h3, .reviews h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .specifications-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .specifications-table tr {
+            border-bottom: 1px solid var(--gray-color);
+        }
+        
+        .specifications-table td {
+            padding: 1.5rem 0;
+        }
+        
+        .specifications-table td:first-child {
+            font-weight: 600;
+            width: 30%;
+        }
+        
+        .review {
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--gray-color);
+        }
+        
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .review-author {
+            font-weight: 600;
+        }
+        
+        .review-date {
+            color: var(--text-light);
+        }
+        
+        .review-rating {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .related-products {
+            margin-top: 6rem;
+        }
+        
+        .related-products h2 {
+            font-size: 2.4rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        .related-products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+        
+        @media (max-width: 1024px) {
+            .product-main {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .thumbnail-container {
+                flex-direction: row;
+                width: 100%;
+                order: 2;
+            }
+            
+            .product-gallery {
+                flex-direction: column;
+            }
+            
+            .related-products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .btn-wishlist {
+                width: 100%;
+                border-radius: 4px;
+            }
+            
+            .related-products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .trust-badges {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container header-content">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="DesiWear Home" width="180" height="60">
+                </a>
+            </div>
+
+            <nav class="main-nav desktop-nav">
+                <ul>
+                    <li><a href="products.html">Indian Clothes</a></li>
+                    <li><a href="products.html?filter=new-arrivals">New Arrivals</a></li>
+                    <li><a href="products.html?category=sarees">Sarees</a></li>
+                    <li><a href="products.html?category=lehengas">Lehengas</a></li>
+                    <li><a href="products.html?category=salwar-suits">Salwar Suits</a></li>
+                </ul>
+
+            </nav>
+
+            <div class="header-actions">
+                <div class="search-container">
+                    <form class="search-bar" role="search">
+                        <input type="text" id="search-input" class="search-input" placeholder="Search...">
+                        <button type="submit" class="icon-button" aria-label="Search">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="action-icons">
+                    <a href="#" class="icon-button" aria-label="Account">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <a href="#" class="icon-button" aria-label="Wishlist">
+                        <i class="fas fa-heart"></i>
+                        <span class="wishlist-count">0</span>
+                    </a>
+                    <div class="shopping-cart-container">
+                        <a href="#" class="icon-button cart-icon" aria-label="Shopping Cart">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-item-count">0</span>
+                        </a>
+                        <div class="cart-popup">
+                            <div class="cart-items">
+                                <p>Your cart is empty.</p>
+                            </div>
+                            <div class="cart-actions">
+                                <a href="shopping-cart.html" class="btn btn-view-cart">View Cart</a>
+                                <a href="checkout.html" class="btn btn-checkout">Checkout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="icon-button mobile-nav-toggle" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <nav class="mobile-nav container">
+            <ul>
+                <ul>
+                    <li><a href="products.html">Indian Clothes</a></li>
+                    <li><a href="products.html?filter=new-arrivals">New Arrivals</a></li>
+                    <li><a href="products.html?filter=sarees">Sarees</a></li>
+                    <li><a href="products.html?filter=lehengas">Lehengas</a></li>
+                    <li><a href="products.html?filter=salwar-suits">Salwar Suits</a></li>
+
+                <li><a href="#">Account</a></li>
+                <li><a href="#">Wishlist</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="product-details-container container">
+            <div class="breadcrumbs" id="breadcrumbs">
+                <a href="index.html">Home</a>
+                <span class="separator">/</span>
+                <a href="products.html">Indian Clothes</a>
+                <span class="separator">/</span>
+                <span id="product-category">Sarees</span>
+                <span class="separator">/</span>
+                <span id="product-name-breadcrumb">Product Name</span>
+            </div>
+
+            <div class="product-main">
+                <div class="product-gallery">
+                    <div class="thumbnail-container" id="thumbnail-container">
+                        <!-- Thumbnails will be populated by JavaScript -->
+                    </div>
+                    <div class="main-image-container">
+                        <img src="" alt="Main product image" class="main-image" id="main-image">
+                        <div class="zoom-indicator">
+                            <i class="fas fa-search-plus"></i> Click to zoom
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-info">
+                    <h1 class="product-title" id="product-title">Product Name</h1>
+                    
+                    <div class="product-price">
+                        <span class="current-price" id="current-price">$99.99</span>
+                        <span class="original-price" id="original-price"></span>
+                    </div>
+                    
+                    <div class="product-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="review-count" id="review-count">24 Reviews</span>
+                    </div>
+                    
+                    <div class="availability">
+                        <i class="fas fa-check-circle in-stock" id="stock-status-icon"></i>
+                        <span id="stock-status-text">In Stock</span>
+                    </div>
+                    
+                    <div class="variant-selector">
+                        <div class="variant-title">
+                            <span>Size</span>
+                            <a href="#" class="size-guide-link">Size Guide</a>
+                        </div>
+                        <div class="size-options" id="size-options">
+                            <!-- Size options will be populated by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <div class="variant-selector">
+                        <div class="variant-title">
+                            <span>Color</span>
+                        </div>
+                        <div class="color-options" id="color-options">
+                            <!-- Color options will be populated by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <div class="quantity-selector">
+                        <span>Quantity:</span>
+                        <div class="quantity-control">
+                            <button class="quantity-btn minus">-</button>
+                            <input type="number" value="1" min="1" class="quantity-input" id="quantity-input">
+                            <button class="quantity-btn plus">+</button>
+                        </div>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="btn btn-primary btn-add-to-cart" id="add-to-cart-btn">Add to Cart</button>
+                        <button class="btn-wishlist" id="wishlist-btn">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="trust-badges">
+                        <div class="trust-badge">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Secure Payment</span>
+                        </div>
+                        <div class="trust-badge">
+                            <i class="fas fa-truck"></i>
+                            <span>Free Shipping</span>
+                        </div>
+                        <div class="trust-badge">
+                            <i class="fas fa-undo"></i>
+                            <span>Easy Returns</span>
+                        </div>
+                    </div>
+                    
+                    <div class="product-tabs">
+                        <div class="tab-headers">
+                            <div class="tab-header active" data-tab="story">Product Story</div>
+                            <div class="tab-header" data-tab="specifications">Specifications</div>
+                            <div class="tab-header" data-tab="reviews">Reviews</div>
+                        </div>
+                        
+                        <div class="tab-content active" id="story-tab">
+                            <div class="product-story">
+                                <h3>About This Product</h3>
+                                <p id="product-description">Product description will be loaded here.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="specifications-tab">
+                            <div class="specifications">
+                                <h3>Product Details</h3>
+                                <table class="specifications-table" id="specifications-table">
+                                    <!-- Specifications will be populated by JavaScript -->
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="reviews-tab">
+                            <div class="reviews">
+                                <h3>Customer Reviews</h3>
+                                <div id="reviews-container">
+                                    <!-- Reviews will be populated by JavaScript -->
+                                </div>
+                                <button class="btn btn-outline" id="write-review-btn">Write a Review</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="related-products">
+                <h2>You Might Also Like</h2>
+                <div class="related-products-grid" id="related-products">
+                    <!-- Related products will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-columns">
+                    <div class="footer-col">
+                        <div class="footer-logo">
+                            <img src="images/logo.png" alt="DesiWear" width="150" height="100">
+                        </div>
+                        <p class="footer-about">DesiWear brings you the finest traditional Indian attire, blending heritage craftsmanship with contemporary designs.</p>
+                        <div class="footer-contact">
+                            <p><i class="fas fa-envelope"></i> info@desiwear.com</p>
+                            <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-col">
+                        <h4>Shop</h4>
+                        <ul>
+                            
+                            <li><a href="products.html">Indian Clothes</a></li>
+                            <li><a href="products.html?filter=new-arrivals">New Arrivals</a></li>
+                            <li><a href="products.html?category=sarees">Sarees</a></li>
+                            <li><a href="products.html?category=lehengas">Lehengas</a></li>
+                            <li><a href="products.html?category=salwar-suits">Salwar Suits</a></li>
+              
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-col">
+                        <h4>Customer Service</h4>
+                        <ul>
+                            <li><a href="#">My Account</a></li>
+                            <li><a href="#">Order Tracking</a></li>
+                            <li><a href="#">Wishlist</a></li>
+                            <li><a href="#">Shipping Policy</a></li>
+                            <li><a href="#">Returns & Exchanges</a></li>
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-col">
+                        <h4>About</h4>
+                        <ul>
+                            <li><a href="#">Our Story</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <div class="copyright">
+                        <p>&copy; 2023 DesiWear. All rights reserved.</p>
+                    </div>
+                    
+                    <div class="payment-methods">
+                        <span>We accept:</span>
+                        <i class="fab fa-cc-visa" aria-label="Visa"></i>
+                        <i class="fab fa-cc-mastercard" aria-label="Mastercard"></i>
+                        <i class="fab fa-cc-paypal" aria-label="PayPal"></i>
+                        <i class="fab fa-cc-amex" aria-label="American Express"></i>
+                    </div>
+                    
+                    <div class="social-media-icons">
+                        <span>Follow us:</span>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#" class="whatsapp-icon" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="js/product-details.js"></script>
+    <script type="module" src="js/main.js" defer></script>
+</body>
+</html>

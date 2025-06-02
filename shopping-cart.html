@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Shopping Cart - DesiWear</title>
+  <link rel="icon" href="images/logo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+  />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/cart.css" />
+</head>
+<body>
+    <header class="main-header">
+        <div class="container header-content">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="DesiWear Home" width="180" height="60">
+                </a>
+            </div>
+
+            <nav class="main-nav desktop-nav">
+                <ul>
+                    <li><a href="products.html">Indian Clothes</a></li>
+                    <li><a href="products.html?filter=new-arrivals">New Arrivals</a></li>
+                    <li><a href="products.html?category=sarees">Sarees</a></li>
+                    <li><a href="products.html?category=lehengas">Lehengas</a></li>
+                    <li><a href="products.html?category=salwar-suits">Salwar Suits</a></li>
+                </ul>
+
+            </nav>
+
+            <div class="header-actions">
+                <div class="search-container">
+                    <form class="search-bar" role="search">
+                        <input type="text" id="search-input" class="search-input" placeholder="Search...">
+                        <button type="submit" class="icon-button" aria-label="Search">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="action-icons">
+                    <a href="#" class="icon-button" aria-label="Account">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <a href="#" class="icon-button" aria-label="Wishlist">
+                        <i class="fas fa-heart"></i>
+                        <span class="wishlist-count">0</span>
+                    </a>
+                    <div class="shopping-cart-container">
+                        <a href="#" class="icon-button cart-icon" aria-label="Shopping Cart">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-item-count">0</span>
+                        </a>
+                        <div class="cart-popup">
+                            <div class="cart-items">
+                                <p>Your cart is empty.</p>
+                            </div>
+                            <div class="cart-actions">
+                                <a href="shopping-cart.html" class="btn btn-view-cart">View Cart</a>
+                                <a href="checkout.html" class="btn btn-checkout">Checkout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="icon-button mobile-nav-toggle" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <nav class="mobile-nav container">
+            <ul>
+                <ul>
+                    <li><a href="products.html">Indian Clothes</a></li>
+                    <li><a href="products.html?filter=new-arrivals">New Arrivals</a></li>
+                    <li><a href="products.html?filter=sarees">Sarees</a></li>
+                    <li><a href="products.html?filter=lehengas">Lehengas</a></li>
+                    <li><a href="products.html?filter=salwar-suits">Salwar Suits</a></li>
+
+                <li><a href="#">Account</a></li>
+                <li><a href="#">Wishlist</a></li>
+            </ul>
+        </nav>
+    </header>
+
+  <main>
+    <div class="cart-container">
+      <div class="breadcrumbs">
+        <a href="index.html">Home</a>
+        <span class="separator">/</span>
+        <span>Shopping Cart</span>
+      </div>
+
+      <div class="page-header">
+        <h1>Your Shopping Cart</h1>
+      </div>
+
+      <div class="cart-content">
+        <div class="cart-main">
+          <!-- Left side: Cart items -->
+          <div class="cart-items">
+            <!-- Example cart item -->
+            <div class="cart-item">
+              <div class="cart-item-top">
+                <img
+                  src="images/product1.jpg"
+                  alt="Product Name"
+                  class="cart-item-image"
+                />
+                <div class="cart-item-details">
+                  <h3 class="cart-item-title">
+                    <a href="product-detail.html">Red Anarkali Gown</a>
+                  </h3>
+                  <div class="cart-item-attributes">
+                    <span>Color: Red</span>, <span>Size: M</span>
+                  </div>
+                  <a href="#" class="cart-item-remove">
+                    <i class="fas fa-trash-alt"></i> Remove
+                  </a>
+                </div>
+              </div>
+              <div class="cart-item-meta">
+                <div class="cart-item-price">Price: $49.99</div>
+                <div class="cart-item-quantity">
+                  Qty:
+                  <div class="quantity-control">
+                    <button class="quantity-btn minus">-</button>
+                    <input type="text" class="quantity-input" value="1" readonly />
+                    <button class="quantity-btn plus">+</button>
+                  </div>
+                </div>
+                <div class="cart-item-subtotal">Subtotal: $49.99</div>
+              </div>
+            </div>
+
+            <!-- Another cart item -->
+            <div class="cart-item">
+              <div class="cart-item-top">
+                <img
+                  src="images/product2.jpg"
+                  alt="Another Product"
+                  class="cart-item-image"
+                />
+                <div class="cart-item-details">
+                  <h3 class="cart-item-title">
+                    <a href="product-detail.html">Blue Lehenga Set</a>
+                  </h3>
+                  <div class="cart-item-attributes">
+                    <span>Color: Blue</span>, <span>Size: L</span>
+                  </div>
+                  <a href="#" class="cart-item-remove">
+                    <i class="fas fa-trash-alt"></i> Remove
+                  </a>
+                </div>
+              </div>
+              <div class="cart-item-meta">
+                <div class="cart-item-price">Price: $39.99</div>
+                <div class="cart-item-quantity">
+                  Qty:
+                  <div class="quantity-control">
+                    <button class="quantity-btn minus">-</button>
+                    <input type="text" class="quantity-input" value="2" readonly />
+                    <button class="quantity-btn plus">+</button>
+                  </div>
+                </div>
+                <div class="cart-item-subtotal">Subtotal: $79.98</div>
+              </div>
+            </div>
+
+            <!-- Cart actions -->
+            <div class="cart-actions">
+              <button class="btn btn-update-cart">Update Cart</button>
+              <a href="products.html" class="btn btn-continue-shopping">Continue Shopping</a>
+            </div>
+          </div>
+
+          <!-- Right side: Summary -->
+          <div class="cart-summary">
+            <h2 class="cart-summary-title">Order Summary</h2>
+            <div class="summary-row">
+              <span class="summary-label">Subtotal</span>
+              <span class="summary-value">$129.97</span>
+            </div>
+            <div class="summary-row">
+              <span class="summary-label">Estimated Shipping</span>
+              <span class="summary-value">$5.00</span>
+            </div>
+            <div class="promo-code">
+              <label for="promo">Promo Code</label>
+              <div class="promo-code-input">
+                <input type="text" id="promo" placeholder="Enter promo code" />
+                <button>Apply</button>
+              </div>
+            </div>
+            <div class="grand-total summary-row">
+              <span class="summary-label">Total</span>
+              <span class="summary-value">$134.97</span>
+            </div>
+            <a href="checkout.html" class="btn btn-checkout">Secure Checkout</a>
+
+            <div class="trust-section">
+              <div class="payment-methods">
+                <i class="fab fa-cc-visa payment-method"></i>
+                <i class="fab fa-cc-mastercard payment-method"></i>
+                <i class="fab fa-cc-paypal payment-method"></i>
+              </div>
+              <div class="security-badge">
+                <i class="fas fa-lock"></i> Secure Checkout
+              </div>
+              <div class="return-policy">
+                Easy 7-day returns. <a href="#">View policy</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+<!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-columns">
+                    <div class="footer-col">
+                        <div class="footer-logo">
+                            <img src="images/logo.png" alt="DesiWear" width="150" height="100">
+                        </div>
+                        <p class="footer-about">DesiWear brings you the finest traditional Indian attire, blending heritage craftsmanship with contemporary designs.</p>
+                        <div class="footer-contact">
+                            <p><i class="fas fa-envelope"></i> info@desiwear.com</p>
+                            <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-col">
+                        <h4>Shop</h4>
+                        <ul>
+                            
+                            <li><a href="products.html">Indian Clothes</a></li>
+                            <li><a href="products.html?filter=new-arrivals">New Arrivals</a></li>
+                            <li><a href="products.html?category=sarees">Sarees</a></li>
+                            <li><a href="products.html?category=lehengas">Lehengas</a></li>
+                            <li><a href="products.html?category=salwar-suits">Salwar Suits</a></li>
+              
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-col">
+                        <h4>Customer Service</h4>
+                        <ul>
+                            <li><a href="#">My Account</a></li>
+                            <li><a href="#">Order Tracking</a></li>
+                            <li><a href="#">Wishlist</a></li>
+                            <li><a href="#">Shipping Policy</a></li>
+                            <li><a href="#">Returns & Exchanges</a></li>
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-col">
+                        <h4>About</h4>
+                        <ul>
+                            <li><a href="#">Our Story</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <div class="copyright">
+                        <p>&copy; 2023 DesiWear. All rights reserved.</p>
+                    </div>
+                    
+                    <div class="payment-methods">
+                        <span>We accept:</span>
+                        <i class="fab fa-cc-visa" aria-label="Visa"></i>
+                        <i class="fab fa-cc-mastercard" aria-label="Mastercard"></i>
+                        <i class="fab fa-cc-paypal" aria-label="PayPal"></i>
+                        <i class="fab fa-cc-amex" aria-label="American Express"></i>
+                    </div>
+                    
+                    <div class="social-media-icons">
+                        <span>Follow us:</span>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#" class="whatsapp-icon" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+  <script src="js/cart.js"></script>
+</body>
+</html>
