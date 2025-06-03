@@ -6,24 +6,19 @@
     <title>DesiWear - Exquisite Traditional Attire</title>
     <link rel="icon" href="images/logo.png" type="image/png">
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/components.css">
 
-    <!-- JavaScript -->
     <script type="module" src="js/main.js" defer></script>
 </head>
 <body>
-    <!-- Header -->
     <header class="main-header">
         <div class="container header-content">
             <div class="logo">
@@ -99,253 +94,231 @@
         </nav>
     </header>
 
-    <!-- Main Content -->
-    <main>
-        <!-- Hero Section -->
-        <section class="hero-section">
-            <div class="hero-image" style="background-image: url('images/hero-image.jpg');"></div>
-            <div class="hero-content container">
-                <h1>Discover Timeless Indian Fashion</h1>
-                <p>Elegance and tradition woven into every thread.</p>
-                <div class="hero-cta">
-                    <a href="#featured-products" class="btn btn-primary">Shop Now</a>
-                    <a href="#" class="btn btn-secondary">Explore Collections</a>
-                </div>
+<main>
+    <section class="hero-section">
+        <div class="hero-image" style="background-image: url('images/hero-image.jpg');"></div>
+        <div class="hero-content container">
+            <h1>Discover Timeless Indian Fashion</h1>
+            <p>Elegance and tradition woven into every thread.</p>
+            <div class="hero-cta">
+                <a href="#featured-products" class="btn btn-primary">Shop Now</a>
+                <a href="#" class="btn btn-secondary">Explore Collections</a>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Featured Products -->
-        <section id="featured-products" class="section-padding" style="background-color: #f8f9fa;">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Our Latest & Greatest</h2>
-                    <a href="#" class="view-all">View All</a>
-                </div>
-                
-                <div class="trending-products-highlights">
-                    <div class="trending-products">
-                        <h3>Trending Products</h3>
-                        <div class="product-grid" id="trending-products-container">
-                            <!-- Products will be loaded here via JavaScript -->
+    <section id="featured-products" class="section-padding" style="background-color: #f8f9fa;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Latest & Greatest</h2>
+                <a href="#" class="view-all">View All</a>
+            </div>
+
+            <div class="trending-products-highlights">
+                <h3>Featured Products</h3>
+                <div class="product-grid" id="trending-products-container">
+                    </div>
+            </div>
+
+            <div class="wedding-lehengas">
+                <h3>Wedding Collection</h3>
+                <div class="wedding-grid">
+                    <div class="wedding-item">
+                        <img src="images/wedding-lehenga-1.jpg" alt="Ornate gold wedding lehenga">
+                        <div class="wedding-overlay">
+                            <h4>Bridal Lehengas</h4>
+                            <a href="#" class="btn btn-outline">Shop Now</a>
                         </div>
                     </div>
-                    
-                    <div class="wedding-lehengas">
-                        <h3>Wedding Collection</h3>
-                        <div class="wedding-grid">
-                            <div class="wedding-item">
-                                <div class="wedding-overlay">
-                                    <h4>Bridal Lehengas</h4>
-                                    <a href="#" class="btn btn-outline">Shop Now</a>
-                                </div>
-                            </div>
-                            <div class="wedding-item">
-                                <img src="images/wedding-lehenga-2.jpg" alt="Ornate gold wedding lehenga">
-                                <div class="wedding-overlay">
-                                    <h4>Reception Wear</h4>
-                                    <a href="#" class="btn btn-outline">Shop Now</a>
-                                </div>
-                            </div>
+                    <div class="wedding-item">
+                        <img src="images/wedding-lehenga-2.jpg" alt="Ornate gold wedding lehenga">
+                        <div class="wedding-overlay">
+                            <h4>Reception Wear</h4>
+                            <a href="#" class="btn btn-outline">Shop Now</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- New Arrivals -->
-        <section class="new-arrivals section-padding bg-light">
-            <div class="container">
-                <div class="section-header">
-                    <h2>New Arrivals</h2>
-                    <a href="#" class="view-all">View All</a>
+    <section class="new-arrivals section-padding">
+        <div class="container">
+            <h2 class="text-center">New Arrivals</h2>
+            <div class="product-carousel" id="new-arrivals-container">
                 </div>
-                
-                <div class="product-carousel" id="new-arrivals-container">
-                    <!-- Products will be loaded here via JavaScript -->
-                </div>
+        </div>
+    </section>
+
+    <section class="categories section-padding">
+        <div class="container">
+            <h2 class="text-center">Shop by Category</h2>
+            <p class="section-subtitle text-center">Explore our exquisite collections</p>
+
+            <div class="category-grid">
+                <a href="#" class="category-card">
+                    <div class="category-card-image" style="background-image: url('images/category-sarees.jpg');"></div>
+                    <div class="category-card-content">
+                        <h3>Sarees</h3>
+                        <p>Traditional & Contemporary Styles</p>
+                        <span class="shop-now">Shop Now <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+                <a href="#" class="category-card">
+                    <div class="category-card-image" style="background-image: url('images/category-salwar-suits.jpg');"></div>
+                    <div class="category-card-content">
+                        <h3>Salwar Suits</h3>
+                        <p>Elegant & Comfortable</p>
+                        <span class="shop-now">Shop Now <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+                <a href="#" class="category-card">
+                    <div class="category-card-image" style="background-image: url('images/category-kameez.jpg');"></div>
+                    <div class="category-card-content">
+                        <h3>Kameez</h3>
+                        <p>Modern & Traditional</p>
+                        <span class="shop-now">Shop Now <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+                <a href="#" class="category-card">
+                    <div class="category-card-image" style="background-image: url('images/category-lehengas.jpg');"></div>
+                    <div class="category-card-content">
+                        <h3>Lehengas</h3>
+                        <p>For Weddings & Special Occasions</p>
+                        <span class="shop-now">Shop Now <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Categories -->
-        <section class="categories section-padding">
-            <div class="container">
-                <h2 class="text-center">Shop by Category</h2>
-                <p class="section-subtitle text-center">Explore our exquisite collections</p>
-                
-                <div class="category-grid">
-                    <a href="#" class="category-card">
-                        <div class="category-card-image" style="background-image: url('images/category-sarees.jpg');"></div>
-                        <div class="category-card-content">
-                            <h3>Sarees</h3>
-                            <p>Traditional & Contemporary Styles</p>
-                            <span class="shop-now">Shop Now <i class="fas fa-arrow-right"></i></span>
-                        </div>
-                    </a>
-                    
-                    <a href="#" class="category-card">
-                        <div class="category-card-image" style="background-image: url('images/category-salwar-suits.jpg');"></div>
-                        <div class="category-card-content">
-                            <h3>Salwar Suits</h3>
-                            <p>Elegant & Comfortable</p>
-                            <span class="shop-now">Shop Now <i class="fas fa-arrow-right"></i></span>
-                        </div>
-                    </a>
-                    
-                    <a href="#" class="category-card">
-                        <div class="category-card-image" style="background-image: url('images/category-kameez.jpg');"></div>
-                        <div class="category-card-content">
-                            <h3>Kameez</h3>
-                            <p>Modern & Traditional</p>
-                            <span class="shop-now">Shop Now <i class="fas fa-arrow-right"></i></span>
-                        </div>
-                    </a>
-                    
-                    <a href="#" class="category-card">
-                        <div class="category-card-image" style="background-image: url('images/category-lehengas.jpg');"></div>
-                        <div class="category-card-content">
-                            <h3>Lehengas</h3>
-                            <p>For Weddings & Special Occasions</p>
-                            <span class="shop-now">Shop Now <i class="fas fa-arrow-right"></i></span>
-                        </div>
-                    </a>
+    <section class="best-sellers section-padding">
+        <div class="container">
+            <h2 class="text-center">Best Sellers</h2>
+            <div class="product-grid" id="best-sellers-container">
                 </div>
-            </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Best Sellers -->
-        <section class="best-sellers section-padding bg-light">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Best Sellers</h2>
-                    <a href="#" class="view-all">View All</a>
-                </div>
-                
-                <div class="product-grid" id="best-sellers-container">
-                    <!-- Products will be loaded here via JavaScript -->
-                </div>
-            </div>
-        </section>
+    <section class="testimonials section-padding">
+        <div class="container">
+            <h2 class="text-center">What Our Customers Say</h2>
+            <p class="section-subtitle text-center">Hear from our happy customers</p>
 
-        <!-- Testimonials -->
-        <section class="testimonials section-padding">
-            <div class="container">
-                <h2 class="text-center">What Our Customers Say</h2>
-                <p class="section-subtitle text-center">Hear from our happy customers</p>
-                
-                <div class="review-carousel" id="customer-reviews-carousel">
-                    <div class="review-item">
-                        <div class="review-content">
-                            <div class="rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <p>"Absolutely stunning! The quality is exceptional and the fit was perfect. I received so many compliments at my cousin's wedding."</p>
-                            <div class="review-author">
-                                <strong>Priya Sharma</strong>
-                                <span>Delhi</span>
-                            </div>
+            <div class="review-carousel" id="customer-reviews-carousel">
+                <div class="review-item">
+                    <div class="review-content">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Absolutely stunning! The quality is exceptional and the fit was perfect. I received so many compliments at my cousin's wedding."</p>
+                        <div class="review-author">
+                            <strong>Priya Sharma</strong>
+                            <span>Delhi</span>
                         </div>
                     </div>
-                    
-                    <div class="review-item">
-                        <div class="review-content">
-                            <div class="rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                            </div>
-                            <p>"The lehenga I ordered was even more beautiful in person than in the photos. Shipping was faster than expected too!"</p>
-                            <div class="review-author">
-                                <strong>Ananya Patel</strong>
-                                <span>Mumbai</span>
-                            </div>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-content">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p>"The lehenga I ordered was even more beautiful in person than in the photos. Shipping was faster than expected too!"</p>
+                        <div class="review-author">
+                            <strong>Ananya Patel</strong>
+                            <span>Mumbai</span>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Blog Section -->
-        <section class="blog-section section-padding bg-light">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Our Latest Stories</h2>
-                    <a href="#" class="view-all">View All Articles</a>
-                </div>
-                
-                <div class="blog-posts-container" id="blog-posts-container">
-                    <article class="blog-post-card">
-                        <div class="blog-post-image">
-                            <img src="images/blog-post-1.jpg" alt="Blog post on styling wedding lehengas" width="480" height="600" />
-                            <div class="blog-post-category">Wedding</div>
-                        </div>
-                        <div class="blog-post-content">
-                            <h3>Styling Your Wedding Lehenga</h3>
-                            <p class="post-excerpt">Discover expert tips for accessorizing your bridal lehenga to create the perfect look for your big day.</p>
-                            <div class="post-meta">
-                                <span class="post-date">June 15, 2023</span>
-                                <span class="read-time">5 min read</span>
-                            </div>
-                            <a href="#" class="btn btn-text">Read More <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </article>
-                    
-                    <article class="blog-post-card">
-                        <div class="blog-post-image">
-                            <img src="images/wedding-lehenga-1.jpg" alt="Blog post on festival wear" width="480" height="600" />
-                            <div class="blog-post-category">Festival</div>
-                        </div>
-                        <div class="blog-post-content">
-                            <h3>Festival Outfit Ideas</h3>
-                            <p class="post-excerpt">Explore traditional yet contemporary outfit ideas for the upcoming festival season.</p>
-                            <div class="post-meta">
-                                <span class="post-date">May 28, 2023</span>
-                                <span class="read-time">4 min read</span>
-                            </div>
-                            <a href="#" class="btn btn-text">Read More <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </article>
-                    
-                    <article class="blog-post-card">
-                        <div class="blog-post-image">
-                            <img src="images/category-sarees.jpg" alt="Blog post on saree draping" width="480" height="600" />
-                            <div class="blog-post-category">Style Guide</div>
-                        </div>
-                        <div class="blog-post-content">
-                            <h3>Modern Saree Draping Techniques</h3>
-                            <p class="post-excerpt">Learn innovative ways to drape your saree for different occasions and body types.</p>
-                            <div class="post-meta">
-                                <span class="post-date">April 10, 2023</span>
-                                <span class="read-time">7 min read</span>
-                            </div>
-                            <a href="#" class="btn btn-text">Read More <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </article>
-                </div>
+    <section class="blog-section section-padding bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Latest Stories</h2>
+                <a href="#" class="view-all">View All Articles</a>
             </div>
-        </section>
 
-        <!-- Newsletter -->
-        <section class="newsletter-section">
-            <div class="container">
-                <div class="newsletter-content">
-                    <h2>Stay Updated</h2>
-                    <p>Subscribe to our newsletter for the latest collections, exclusive offers, and style tips.</p>
-                    <form class="newsletter-form">
-                        <input type="email" placeholder="Your email address" required>
-                        <button type="submit" class="btn btn-primary">Subscribe</button>
-                    </form>
-                </div>
+            <div class="blog-posts-container" id="blog-posts-container">
+                <article class="blog-post-card">
+                    <div class="blog-post-image">
+                        <img src="images/blog-post-1.jpg" alt="Blog post on styling wedding lehengas" width="480" height="600" />
+                        <div class="blog-post-category">Wedding</div>
+                    </div>
+                    <div class="blog-post-content">
+                        <h3>Styling Your Wedding Lehenga</h3>
+                        <p class="post-excerpt">Discover expert tips for accessorizing your bridal lehenga to create the perfect look for your big day.</p>
+                        <div class="post-meta">
+                            <span class="post-date">June 15, 2023</span>
+                            <span class="read-time">5 min read</span>
+                        </div>
+                        <a href="#" class="btn btn-text">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-post-card">
+                    <div class="blog-post-image">
+                        <img src="images/wedding-lehenga-1.jpg" alt="Blog post on festival wear" width="480" height="600" />
+                        <div class="blog-post-category">Festival</div>
+                    </div>
+                    <div class="blog-post-content">
+                        <h3>Festival Outfit Ideas</h3>
+                        <p class="post-excerpt">Explore traditional yet contemporary outfit ideas for the upcoming festival season.</p>
+                        <div class="post-meta">
+                            <span class="post-date">May 28, 2023</span>
+                            <span class="read-time">4 min read</span>
+                        </div>
+                        <a href="#" class="btn btn-text">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-post-card">
+                    <div class="blog-post-image">
+                        <img src="images/category-sarees.jpg" alt="Blog post on saree draping" width="480" height="600" />
+                        <div class="blog-post-category">Style Guide</div>
+                    </div>
+                    <div class="blog-post-content">
+                        <h3>Modern Saree Draping Techniques</h3>
+                        <p class="post-excerpt">Learn innovative ways to drape your saree for different occasions and body types.</p>
+                        <div class="post-meta">
+                            <span class="post-date">April 10, 2023</span>
+                            <span class="read-time">7 min read</span>
+                        </div>
+                        <a href="#" class="btn btn-text">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
-    <!-- Footer -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Stay Updated</h2>
+                <p>Subscribe to our newsletter for the latest collections, exclusive offers, and style tips.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+
     <footer class="main-footer">
         <div class="footer-top">
             <div class="container">
@@ -429,4 +402,6 @@
         </div>
     </footer>
 </body>
+<script type="module" src="js/homepage.js"></script>
+
 </html>
