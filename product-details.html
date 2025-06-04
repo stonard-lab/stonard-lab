@@ -3,745 +3,703 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Details - DesiWear</title>
-    <link rel="icon" href="images/logo.png" type="image/png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title id="productPageTitle">Product Details - DesiWear</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/components.css">
-    <style>
-        /* Product Details Specific Styles */
-        .product-details-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-        
-        .breadcrumbs {
-            padding: 1.5rem 0;
-            font-size: 1.4rem;
-            color: var(--text-light);
-        }
-        
-        .product-main {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            margin-top: 3rem;
-        }
-        
-        .product-gallery {
-            display: flex;
-            gap: 2rem;
-        }
-        
-        .thumbnail-container {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            width: 80px;
-        }
-        
-        .thumbnail {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            cursor: pointer;
-            border: 1px solid var(--gray-color);
-            border-radius: 4px;
-            transition: var(--transition);
-        }
-        
-        .thumbnail:hover, .thumbnail.active {
-            border-color: var(--primary-color);
-        }
-        
-        .main-image-container {
-            flex: 1;
-            position: relative;
-        }
-        
-        .main-image {
-            width: 100%;
-            height: auto;
-            max-height: 600px;
-            object-fit: contain;
-            border-radius: 8px;
-        }
-        
-        .zoom-indicator {
-            position: absolute;
-            bottom: 1rem;
-            right: 1rem;
-            background-color: rgba(0,0,0,0.7);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            font-size: 1.2rem;
-        }
-        
-        .product-info {
-            padding: 1rem;
-        }
-        
-        .product-title {
-            font-size: 2.8rem;
-            margin-bottom: 1rem;
-            color: var(--dark-color);
-        }
-        
-        .product-price {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        
-        .current-price {
-            font-size: 2.4rem;
-            font-weight: 700;
-            color: var(--primary-color);
-        }
-        
-        .original-price {
-            font-size: 1.8rem;
-            text-decoration: line-through;
-            color: var(--text-light);
-        }
-        
-        .product-rating {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        
-        .stars {
-            color: var(--secondary-color);
-        }
-        
-        .review-count {
-            color: var(--text-light);
-            text-decoration: underline;
-            cursor: pointer;
-        }
-        
-        .availability {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            font-size: 1.6rem;
-        }
-        
-        .in-stock {
-            color: var(--success-color);
-        }
-        
-        .low-stock {
-            color: var(--secondary-color);
-        }
-        
-        .out-of-stock {
-            color: var(--error-color);
-        }
-        
-        .variant-selector {
-            margin-bottom: 2rem;
-        }
-        
-        .variant-title {
-            font-size: 1.6rem;
-            margin-bottom: 1rem;
-            display: flex;
-            justify-content: space-between;
-        }
-        
-        .size-options {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        
-        .size-option {
-            padding: 0.8rem 1.5rem;
-            border: 1px solid var(--gray-color);
-            border-radius: 4px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .size-option:hover, .size-option.selected {
-            border-color: var(--primary-color);
-            background-color: var(--primary-color);
-            color: white;
-        }
-        
-        .color-options {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        
-        .color-option {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 2px solid transparent;
-            cursor: pointer;
-            position: relative;
-        }
-        
-        .color-option.selected {
-            border-color: var(--dark-color);
-        }
-        
-        .color-option.selected::after {
-            content: '';
-            position: absolute;
-            top: -4px;
-            left: -4px;
-            right: -4px;
-            bottom: -4px;
-            border: 1px solid var(--dark-color);
-            border-radius: 50%;
-        }
-        
-        .quantity-selector {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 3rem;
-        }
-        
-        .quantity-control {
-            display: flex;
-            border: 1px solid var(--gray-color);
-            border-radius: 4px;
-        }
-        
-        .quantity-btn {
-            width: 40px;
-            height: 40px;
-            background-color: var(--light-color);
-            border: none;
-            font-size: 1.6rem;
-            cursor: pointer;
-        }
-        
-        .quantity-input {
-            width: 60px;
-            height: 40px;
-            text-align: center;
-            border: none;
-            border-left: 1px solid var(--gray-color);
-            border-right: 1px solid var(--gray-color);
-            font-size: 1.6rem;
-        }
-        
-        .action-buttons {
-            display: flex;
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-        
-        .btn-add-to-cart {
-            flex: 1;
-            padding: 1.5rem;
-            font-size: 1.6rem;
-        }
-        
-        .btn-wishlist {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: var(--light-color);
-            border: 1px solid var(--gray-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .btn-wishlist:hover {
-            color: var(--error-color);
-            border-color: var(--error-color);
-        }
-        
-        .btn-wishlist.active {
-            color: var(--error-color);
-            border-color: var(--error-color);
-        }
-        
-        .trust-badges {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            padding: 2rem 0;
-            border-top: 1px solid var(--gray-color);
-            border-bottom: 1px solid var(--gray-color);
-            margin-bottom: 3rem;
-        }
-        
-        .trust-badge {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        
-        .product-tabs {
-            margin-top: 5rem;
-        }
-        
-        .tab-headers {
-            display: flex;
-            border-bottom: 1px solid var(--gray-color);
-        }
-        
-        .tab-header {
-            padding: 1.5rem 2rem;
-            cursor: pointer;
-            font-weight: 600;
-            position: relative;
-        }
-        
-        .tab-header.active {
-            color: var(--primary-color);
-        }
-        
-        .tab-header.active::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background-color: var(--primary-color);
-        }
-        
-        .tab-content {
-            padding: 2rem 0;
-            display: none;
-        }
-        
-        .tab-content.active {
-            display: block;
-        }
-        
-        .product-story h3, .specifications h3, .reviews h3 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .specifications-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        .specifications-table tr {
-            border-bottom: 1px solid var(--gray-color);
-        }
-        
-        .specifications-table td {
-            padding: 1.5rem 0;
-        }
-        
-        .specifications-table td:first-child {
-            font-weight: 600;
-            width: 30%;
-        }
-        
-        .review {
-            padding: 2rem 0;
-            border-bottom: 1px solid var(--gray-color);
-        }
-        
-        .review-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 1rem;
-        }
-        
-        .review-author {
-            font-weight: 600;
-        }
-        
-        .review-date {
-            color: var(--text-light);
-        }
-        
-        .review-rating {
-            color: var(--secondary-color);
-            margin-bottom: 1rem;
-        }
-        
-        .related-products {
-            margin-top: 6rem;
-        }
-        
-        .related-products h2 {
-            font-size: 2.4rem;
-            margin-bottom: 3rem;
-            text-align: center;
-        }
-        
-        .related-products-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-        }
-        
-        @media (max-width: 1024px) {
-            .product-main {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .thumbnail-container {
-                flex-direction: row;
-                width: 100%;
-                order: 2;
-            }
-            
-            .product-gallery {
-                flex-direction: column;
-            }
-            
-            .related-products-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .action-buttons {
-                flex-direction: column;
-            }
-            
-            .btn-wishlist {
-                width: 100%;
-                border-radius: 4px;
-            }
-            
-            .related-products-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .trust-badges {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/product-details.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
-    <header class="main-header">
-        <div class="container header-content">
-            <div class="logo">
-                <a href="index.html">
-                    <img src="images/logo.png" alt="DesiWear Home" width="180" height="60">
-                </a>
+    <header class="header">
+        </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="breadcrumbs">
+                <a href="index.html">Home</a> &gt; <span id="breadcrumb-category"></span> &gt; <span id="breadcrumb-product-name"></span>
             </div>
 
-            <nav class="main-nav desktop-nav">
-                <ul>
-                    <li><a href="products.html">Indian Clothes</a></li>
-                    <li><a href="products.html?filter=new-arrivals">New Arrivals</a></li>
-                    <li><a href="products.html?category=sarees">Sarees</a></li>
-                    <li><a href="products.html?category=lehengas">Lehengas</a></li>
-                    <li><a href="products.html?category=salwar-suits">Salwar Suits</a></li>
-                </ul>
+            <div id="product-details-container" class="product-details-section">
+                <div class="product-main-info">
+                    <div class="product-images">
+                        <div id="product-main-image" class="main-image"></div>
+                        <div id="product-thumbnails" class="thumbnails"></div>
+                    </div>
+                    <div class="product-info">
+                        <h1 id="product-name" class="product-title"></h1>
+                        <div class="product-rating">
+                            <div id="product-rating-stars" class="star-rating"></div>
+                            <span id="product-review-count" class="review-count"></span>
+                        </div>
+                        <div id="product-price" class="product-price"></div>
+                        <p class="product-availability">Availability: <span id="product-availability-status"></span></p>
 
-            </nav>
-
-            <div class="header-actions">
-                <div class="search-container">
-                    <form class="search-bar" role="search">
-                        <input type="text" id="search-input" class="search-input" placeholder="Search...">
-                        <button type="submit" class="icon-button" aria-label="Search">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </form>
-                </div>
-                
-                <div class="action-icons">
-                    <a href="#" class="icon-button" aria-label="Account">
-                        <i class="fas fa-user"></i>
-                    </a>
-                    <a href="#" class="icon-button" aria-label="Wishlist">
-                        <i class="fas fa-heart"></i>
-                        <span class="wishlist-count">0</span>
-                    </a>
-                    <div class="shopping-cart-container">
-                        <a href="#" class="icon-button cart-icon" aria-label="Shopping Cart">
-                            <i class="fas fa-shopping-cart"></i>
-                            <span class="cart-item-count">0</span>
-                        </a>
-                        <div class="cart-popup">
-                            <div class="cart-items">
-                                <p>Your cart is empty.</p>
+                        <div class="product-options">
+                            <div class="option-group">
+                                <label for="size">Size:</label>
+                                <select id="size"></select>
                             </div>
-                            <div class="cart-actions">
-                                <a href="shopping-cart.html" class="btn btn-view-cart">View Cart</a>
-                                <a href="checkout.html" class="btn btn-checkout">Checkout</a>
+                            <div class="option-group">
+                                <label for="color">Color:</label>
+                                <select id="color"></select>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <button class="icon-button mobile-nav-toggle" aria-label="Toggle navigation">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </div>
-        
-        <nav class="mobile-nav container">
-            <ul>
-                <ul>
-                    <li><a href="products.html">Indian Clothes</a></li>
-                    <li><a href="products.html?filter=new-arrivals">New Arrivals</a></li>
-                    <li><a href="products.html?filter=sarees">Sarees</a></li>
-                    <li><a href="products.html?filter=lehengas">Lehengas</a></li>
-                    <li><a href="products.html?filter=salwar-suits">Salwar Suits</a></li>
-
-                <li><a href="#">Account</a></li>
-                <li><a href="#">Wishlist</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <div class="product-details-container container">
-            <div class="breadcrumbs" id="breadcrumbs">
-                <a href="index.html">Home</a>
-                <span class="separator">/</span>
-                <a href="products.html">Indian Clothes</a>
-                <span class="separator">/</span>
-                <span id="product-category">Sarees</span>
-                <span class="separator">/</span>
-                <span id="product-name-breadcrumb">Product Name</span>
-            </div>
-
-            <div class="product-main">
-                <div class="product-gallery">
-                    <div class="thumbnail-container" id="thumbnail-container">
-                        <!-- Thumbnails will be populated by JavaScript -->
-                    </div>
-                    <div class="main-image-container">
-                        <img src="" alt="Main product image" class="main-image" id="main-image">
-                        <div class="zoom-indicator">
-                            <i class="fas fa-search-plus"></i> Click to zoom
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-info">
-                    <h1 class="product-title" id="product-title">Product Name</h1>
-                    
-                    <div class="product-price">
-                        <span class="current-price" id="current-price">$99.99</span>
-                        <span class="original-price" id="original-price"></span>
-                    </div>
-                    
-                    <div class="product-rating">
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                        <span class="review-count" id="review-count">24 Reviews</span>
-                    </div>
-                    
-                    <div class="availability">
-                        <i class="fas fa-check-circle in-stock" id="stock-status-icon"></i>
-                        <span id="stock-status-text">In Stock</span>
-                    </div>
-                    
-                    <div class="variant-selector">
-                        <div class="variant-title">
-                            <span>Size</span>
-                            <a href="#" class="size-guide-link">Size Guide</a>
-                        </div>
-                        <div class="size-options" id="size-options">
-                            <!-- Size options will be populated by JavaScript -->
-                        </div>
-                    </div>
-                    
-                    <div class="variant-selector">
-                        <div class="variant-title">
-                            <span>Color</span>
-                        </div>
-                        <div class="color-options" id="color-options">
-                            <!-- Color options will be populated by JavaScript -->
-                        </div>
-                    </div>
-                    
-                    <div class="quantity-selector">
-                        <span>Quantity:</span>
-                        <div class="quantity-control">
-                            <button class="quantity-btn minus">-</button>
-                            <input type="number" value="1" min="1" class="quantity-input" id="quantity-input">
-                            <button class="quantity-btn plus">+</button>
-                        </div>
-                    </div>
-                    
-                    <div class="action-buttons">
-                        <button class="btn btn-primary btn-add-to-cart" id="add-to-cart-btn">Add to Cart</button>
-                        <button class="btn-wishlist" id="wishlist-btn">
-                            <i class="far fa-heart"></i>
-                        </button>
-                    </div>
-                    
-                    <div class="trust-badges">
-                        <div class="trust-badge">
-                            <i class="fas fa-shield-alt"></i>
-                            <span>Secure Payment</span>
-                        </div>
-                        <div class="trust-badge">
-                            <i class="fas fa-truck"></i>
-                            <span>Free Shipping</span>
-                        </div>
-                        <div class="trust-badge">
-                            <i class="fas fa-undo"></i>
-                            <span>Easy Returns</span>
-                        </div>
-                    </div>
-                    
-                    <div class="product-tabs">
-                        <div class="tab-headers">
-                            <div class="tab-header active" data-tab="story">Product Story</div>
-                            <div class="tab-header" data-tab="specifications">Specifications</div>
-                            <div class="tab-header" data-tab="reviews">Reviews</div>
-                        </div>
-                        
-                        <div class="tab-content active" id="story-tab">
-                            <div class="product-story">
-                                <h3>About This Product</h3>
-                                <p id="product-description">Product description will be loaded here.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="tab-content" id="specifications-tab">
-                            <div class="specifications">
-                                <h3>Product Details</h3>
-                                <table class="specifications-table" id="specifications-table">
-                                    <!-- Specifications will be populated by JavaScript -->
-                                </table>
-                            </div>
-                        </div>
-                        
-                        <div class="tab-content" id="reviews-tab">
-                            <div class="reviews">
-                                <h3>Customer Reviews</h3>
-                                <div id="reviews-container">
-                                    <!-- Reviews will be populated by JavaScript -->
+                            <div class="option-group quantity-selector">
+                                <label for="quantity">Quantity:</label>
+                                <div class="quantity-controls">
+                                    <button class="quantity-decrease">-</button>
+                                    <input type="number" id="quantity" value="1" min="1" max="100">
+                                    <button class="quantity-increase">+</button>
                                 </div>
-                                <button class="btn btn-outline" id="write-review-btn">Write a Review</button>
                             </div>
+                        </div>
+                        <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
+                        <button class="btn btn-secondary add-to-wishlist-btn">Add to Wishlist</button>
+                    </div>
+                </div>
+
+                <div class="product-tabs-section">
+                    <div class="tab-buttons">
+                        <button class="tab-button active" data-tab="story">Product Story</button>
+                        <button class="tab-button" data-tab="specifications">Specifications</button>
+                        <button class="tab-button" data-tab="shipping">Shipping & Returns</button>
+                        <button class="tab-button" data-tab="reviews">Customer Reviews</button>
+                    </div>
+                    <div class="tab-contents">
+                        <div id="story" class="tab-content active"></div>
+                        <div id="specifications" class="tab-content"></div>
+                        <div id="shipping" class="tab-content"></div>
+                        <div id="reviews" class="tab-content">
+                            <div class="overall-review-summary">
+                                <div id="overall-rating-stars-tab" class="star-rating large"></div>
+                                <span id="overall-review-count-tab" class="review-count-large"></span>
+                            </div>
+                            <div id="customer-reviews-list" class="customer-reviews-list"></div>
+                            <button class="btn btn-secondary write-review-btn">Write a Review</button>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="related-products">
-                <h2>You Might Also Like</h2>
-                <div class="related-products-grid" id="related-products">
-                    <!-- Related products will be populated by JavaScript -->
-                </div>
+
+                <section class="related-products-section">
+                    <h2>You Might Also Like</h2>
+                    <div id="related-products" class="product-grid">
+                        </div>
+                </section>
+
             </div>
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="main-footer">
-        <div class="footer-top">
-            <div class="container">
-                <div class="footer-columns">
-                    <div class="footer-col">
-                        <div class="footer-logo">
-                            <img src="images/logo.png" alt="DesiWear" width="150" height="100">
-                        </div>
-                        <p class="footer-about">DesiWear brings you the finest traditional Indian attire, blending heritage craftsmanship with contemporary designs.</p>
-                        <div class="footer-contact">
-                            <p><i class="fas fa-envelope"></i> info@desiwear.com</p>
-                            <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
-                        </div>
-                    </div>
-                    
-                    <div class="footer-col">
-                        <h4>Shop</h4>
-                        <ul>
-                            
-                            <li><a href="products.html">Indian Clothes</a></li>
-                            <li><a href="products.html?filter=new-arrivals">New Arrivals</a></li>
-                            <li><a href="products.html?category=sarees">Sarees</a></li>
-                            <li><a href="products.html?category=lehengas">Lehengas</a></li>
-                            <li><a href="products.html?category=salwar-suits">Salwar Suits</a></li>
-              
-                        </ul>
-                    </div>
-                    
-                    <div class="footer-col">
-                        <h4>Customer Service</h4>
-                        <ul>
-                            <li><a href="#">My Account</a></li>
-                            <li><a href="#">Order Tracking</a></li>
-                            <li><a href="#">Wishlist</a></li>
-                            <li><a href="#">Shipping Policy</a></li>
-                            <li><a href="#">Returns & Exchanges</a></li>
-                            <li><a href="#">FAQ</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="footer-col">
-                        <h4>About</h4>
-                        <ul>
-                            <li><a href="#">Our Story</a></li>
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="#">Careers</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Terms of Service</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="footer-bottom-content">
-                    <div class="copyright">
-                        <p>&copy; 2023 DesiWear. All rights reserved.</p>
-                    </div>
-                    
-                    <div class="payment-methods">
-                        <span>We accept:</span>
-                        <i class="fab fa-cc-visa" aria-label="Visa"></i>
-                        <i class="fab fa-cc-mastercard" aria-label="Mastercard"></i>
-                        <i class="fab fa-cc-paypal" aria-label="PayPal"></i>
-                        <i class="fab fa-cc-amex" aria-label="American Express"></i>
-                    </div>
-                    
-                    <div class="social-media-icons">
-                        <span>Follow us:</span>
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
-                        <a href="#" class="whatsapp-icon" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <footer class="footer">
+        </footer>
 
-    <script type="module" src="js/product-details.js"></script>
-    <script type="module" src="js/main.js" defer></script>
+    <script>
+        // === Products Data (Copied from products.js) ===
+        const productsData = [ // Renamed from 'products' to 'productsData' for consistency with your script
+            {
+                id: "TRND1001",
+                name: "Ivory Net Anarkali Suit With Zari Work For Eid",
+                price: 146.0,
+                originalPrice: null,
+                discount: null,
+                categories: ["Salwar Kameez", "Anarkali Suit"],
+                type: "Anarkali Suit",
+                style: ["Round Neck", "Full Sleeves"],
+                occasions: ["Festival Wear", "Bridal Wear", "Wedding Wear", "Party Wear"],
+                festivals: [],
+                fabric: {
+                    top: "Net",
+                    bottom: "Santoon",
+                    dupatta: "Net"
+                },
+                color: "Ivory",
+                work: ["Zari Work", "Stone Work", "Sequins Work", "Dori Work"],
+                components: ["Top (Included Lining)", "Bottom", "Scarf"],
+                customization: "Up to 58 inches",
+                description: "Look fabulous and beautiful by wearing this Ivory Net Anarkali Suit which surely deserves a special place in your wardrobe. This Round neck and Full Sleeves clothe prettified with zari, stone, sequins and dori work. Available with Santoon Churidar in Ivory Color with Ivory Net Dupatta. Dupatta prettified with Stone, Sequins and Dori Work.",
+                colorVariationNotice: true,
+                images: [
+                    "/images/products/LSTV03368.webp"
+                ]
+            },
+            {
+                id: "TRND1002",
+                name: "Plain Beige Indo Western Jacket Style Dhoti With Top",
+                price: 159.0,
+                originalPrice: 267.0,
+                discount: "40% Off",
+                categories: ["Salwar Kameez", "Anarkali Suit"],
+                type: "Embroidered Anarkali Suit",
+                style: ["Indo-Western", "Jacket Style", "Asymmetric", "Dhoti"],
+                occasions: ["Wedding Wear", "Bridesmaid Wear", "Sangeet"],
+                festivals: ["Diwali", "Navratri"],
+                fabric: {
+                    top: "Soft Silk",
+                    bottom: "Soft Silk",
+                    dupatta: "Net",
+                    jacket: "Net"
+                },
+                color: "Pure Beige",
+                work: ["Plain Work"],
+                components: ["Top (Included Lining)", "Jacket", "Bottom", "Dupatta"],
+                customization: "Up to 58 inches",
+                description: "Gorgeously mesmerizing is what you will look at the next social function by wearing this beige soft silk jacket style dhoti with a top that will provide you with unmatched all-day comfort. This sweetheart neckline top is elaborated using plain. Set together with soft silk dhoti pants in beige color with beige net dupatta. Dhoti pants has plain. Dupatta elaborated using plain. Get an exquisite and classy look by net pure beige jacket adorned with work on resham thread, sequins, and zari work.",
+                colorVariationNotice: true,
+                images: [
+                    "/images/products/LSTV125927.webp"
+                ]
+            },
+            {
+                id: "TRND1003",
+                name: "Net Light Beige Sequins Embroidered Indo-Western Saree For Eid",
+                price: 219.0,
+                originalPrice: 407.0,
+                discount: "46% Off",
+                categories: ["Saree"],
+                type: "Embroidered Saree",
+                style: ["Indo Western"],
+                occasions: ["Wedding Wear", "Party Wear", "Guest of Wedding Wear", "Sangeet", "Engagement"],
+                festivals: ["Diwali", "Navratri"],
+                fabric: {
+                    saree: "Net",
+                    blouse: "Net"
+                },
+                color: "Light Beige",
+                work: ["Sequins Work", "Thread Work", "Beads Work"],
+                components: ["Saree", "Blouse"],
+                customization: "Up to 68 inches",
+                description: "Be the cynosure of all eyes by wearing this light beige net saree which will give a very sassy look. This sweetheart neckline and sleeveless blouse is accentuated with sequins, thread, and beads work. It is along with a net indo western saree in light beige color elaborated using thread and sequins work.",
+                colorVariationNotice: true,
+                images: [
+                    "/images/products/SARV172788.webp"
+                ]
+            },
+            {
+                id: "TRND1004",
+                name: "Women Ethnic Embellished Gold Jutti",
+                price: 92.0,
+                originalPrice: 119.0,
+                discount: "22% Off",
+                categories: ["Footwear", "Juttis"],
+                type: "Embroidered Silk Jutti",
+                style: [],
+                occasions: ["Wedding Wear", "Party Wear", "Guest of Wedding Wear", "Sangeet", "Mahendi", "Haldi"],
+                festivals: ["Diwali", "Navratri", "Eid", "Lohri"],
+                fabric: {
+                    material: "Silk"
+                },
+                color: "Gold",
+                work: ["Beads Work", "Pearl Work", "Stone Work"],
+                components: [],
+                customization: null,
+                description: "Elevate your style with our Embroidered Silk Gold Women's Jutti. Made from luxurious silk and adorned with intricate beads, stone, and pearl work, these juttis exude timeless elegance. Perfect for weddings, cultural celebrations, or festive occasions, they combine traditional artistry with contemporary flair for a stunning statement. Comfort meets sophistication effortlessly.",
+                colorVariationNotice: true,
+                images: [
+                    "/images/products/JUTW127.webp"
+                ]
+            },
+            {
+                id: "LSTV125834",
+                name: "Pale Pink Sherwani Mala Layered with Pearl and Kundan",
+                price: 39.0,
+                originalPrice: 50.0,
+                discount: "22% Off",
+                categories: ["Sherwani Mala"],
+                type: "Traditional Sherwani Mala",
+                style: ["Sherwani Mala"],
+                occasions: ["Wedding Wear", "Engagement"],
+                festivals: ["Diwali", "Eid"],
+                color: "Pale Pink",
+                work: ["Kundan Work", "Pearl Work"],
+                components: ["Top (Included Lining)", "Bottom", "Dupatta"],
+                customization: null,
+                description: "Perfectly cut, this pale pink alloy sherwani mala which will make all the goddesses of love and beauty to write you for your advice. Designed to elevate traditional elegance, this multi-layered necklace features intricate pearl and kundan work embellishments, adding a rich, regal charm to your ensemble.",
+                colorVariationNotice: true,
+                images: [
+                    "/images/products/JSM0136311.webp"
+                ]
+            },
+            {
+                id: "LSTV125835",
+                name: "Sage Green Silk Resham Embroidered Men's Jutti",
+                price: 92.0,
+                originalPrice: 119.0,
+                discount: "22% Off",
+                categories: ["Footwear", "Juttis"],
+                type: "Embroidered Jutti",
+                style: [],
+                occasions: ["Wedding Wear", "Party Wear", "Guest of Wedding Wear", "Sangeet", "Haldi", "Engagement"],
+                festivals: ["Diwali", "Navratri"],
+                fabric: {
+                    material: "Silk"
+                },
+                color: "Sage Green",
+                work: ["Resham Work", "Thread Work"],
+                components: [],
+                customization: null,
+                description: "Step into elegance with our sage green embroidered jutti, beautifully adorned with resham and thread work. Designed for comfort and style, this handcrafted pair adds a touch of sophistication to any outfit, making it perfect for festive and casual occasions alike.",
+                colorVariationNotice: true,
+                images: [
+                    "/images/products/JUTW133.webp"
+                ]
+            },
+            {
+                id: "LSTV125836",
+                name: "Gold Stone Earing And Necklace Set",
+                price: 39.0,
+                originalPrice: 60.0,
+                discount: "36% Off",
+                categories: ["Necklace Set"],
+                type: "Traditional Necklace Set",
+                style: ["Dangle", "Choker"],
+                occasions: ["Guest of Wedding Wear", "Sangeet", "Festival Wear"],
+                festivals: ["Diwali", "Eid", "Navratri"],
+                color: "Pure Gold",
+                work: ["Pearl Work", "Stone Work"],
+                components: ["Top (Included Lining)", "Bottom", "Dupatta"],
+                customization: null,
+                description: "Look fabulous and beautiful by wearing this gold alloy necklace set which will keep you comfortable and easy on the eye at the next social function. The stone and pearl work.",
+                colorVariationNotice: true,
+                images: [
+                    "/images/products/JNS0135911.webp"
+                ]
+            },
+            {
+                id: "LSTV125837",
+                name: "Georgette Pastel Dark Blue Embroidered Straight Cut Suit",
+                price: 133.0,
+                originalPrice: 166.0,
+                discount: "20% Off",
+                categories: ["Salwar Kameez", "Sharara Suit"],
+                type: "Embroidered Sharara Suit",
+                style: ["Straight Cut"],
+                occasions: ["Guest of Wedding Wear", "Sangeet"],
+                festivals: ["Diwali", "Eid", "Gur Purab", "Lohri", "Navratri"],
+                fabric: {
+                    top: "Georgette",
+                    bottom: "Georgette",
+                    dupatta: "Georgette"
+                },
+                color: "Pastel Dark Blue",
+                work: ["Lace Work", "Sequins Work", "Thread Work"],
+                components: ["Top (Included Lining)", "Bottom", "Dupatta"],
+                customization: "Up to 58 inches",
+                description: "Exquisitely, this pastel dark blue georgette sharara suit will keep you comfortable and easy on the eye at the next social function. This v-neck and 3/4th sleeve suit is accentuated with lace, sequins, and thread work. Completed with georgette sharara pants in pastel dark blue color with pastel dark blue georgette dupatta. Sharara pants has thread and sequins work. Dupatta adorned with lace, sequins, and thread work.",
+                colorVariationNotice: true,
+                images: [
+                    "/images/products/LSTV127805.webp"
+                ]
+            },
+            {
+                id: "LSTV125834",
+                name: "Georgette Embroidered Plum Purple Straight Cut Sharara Suit",
+                price: 126.0,
+                originalPrice: 182.0,
+                discount: "31% Off",
+                categories: ["Salwar Kameez", "Sharara Suit"],
+                type: "Embroidered Sharara Suit",
+                style: ["Side Slit"],
+                occasions: ["Wedding Wear", "Guest of Wedding Wear", "Sangeet"],
+                festivals: ["Diwali", "Eid", "Navratri"],
+                fabric: {
+                    top: "Georgette",
+                    bottom: "Georgette",
+                    dupatta: "Net"
+                },
+                color: "Plum Purple",
+                work: ["Resham Work", "Sequins Work", "Thread Work"],
+                components: ["Top (Included Lining)", "Bottom", "Dupatta"],
+                customization: "Up to 58 inches",
+                description: "This spaghetti strap and sleeveless suit is adorned with sequins and resham thread work. Completed with georgette sharara pants in plum purple color with plum purple net dupatta. Sharara pants have resham thread work. Dupatta accentuated with sequins and resham thread work.",
+                colorVariationNotice: true,
+                images: [
+                    "/images/products/LSTV125834.webp"
+                ]
+            },
+            {
+                id: "BST1001",
+                name: "Georgette Embroidered Plum Purple Straight Cut Sharara Suit",
+                price: 126.0,
+                originalPrice: 182.0,
+                discount: "31% Off",
+                categories: ["Salwar Kameez", "Sharara Suit"],
+                type: "Embroidered Sharara Suit",
+                style: ["Side Slit"],
+                occasions: ["Wedding Wear", "Guest of Wedding Wear", "Sangeet"],
+                festivals: ["Diwali", "Eid", "Navratri"],
+                fabric: {
+                    top: "Georgette",
+                    bottom: "Georgette",
+                    dupatta: "Net"
+                },
+                color: "Plum Purple",
+                work: ["Resham Work", "Sequins Work", "Thread Work"],
+                components: ["Top (Included Lining)", "Bottom", "Dupatta"],
+                customization: "Up to 58 inches",
+                description: "This spaghetti strap and sleeveless suit is adorned with sequins and resham thread work. Completed with georgette sharara pants in plum purple color with plum purple net dupatta. Sharara pants have resham thread work. Dupatta accentuated with sequins and resham thread work.",
+                colorVariationNotice: true,
+                images: [
+                    "/images/products/LSTV125834.webp"
+                ]
+            },
+            {
+                id: "BST1002",
+                name: "Georgette Embroidered Plum Purple Straight Cut Sharara Suit",
+                price: 126.0,
+                originalPrice: 182.0,
+                discount: "31% Off",
+                categories: ["Salwar Kameez", "Sharara Suit"],
+                type: "Embroidered Sharara Suit",
+                style: ["Side Slit"],
+                occasions: ["Wedding Wear", "Guest of Wedding Wear", "Sangeet"],
+                festivals: ["Diwali", "Eid", "Navratri"],
+                fabric: {
+                    top: "Georgette",
+                    bottom: "Georgette",
+                    dupatta: "Net"
+                },
+                color: "Plum Purple",
+                work: ["Resham Work", "Sequins Work", "Thread Work"],
+                components: ["Top (Included Lining)", "Bottom", "Dupatta"],
+                customization: "Up to 58 inches",
+                description: "This spaghetti strap and sleeveless suit is adorned with sequins and resham thread work. Completed with georgette sharara pants in plum purple color with plum purple net dupatta. Sharara pants have resham thread work. Dupatta accentuated with sequins and resham thread work.",
+                colorVariationNotice: true,
+                images: [
+                    "/images/products/LSTV125834.webp"
+                ]
+            },
+            {
+                id: "BST1003",
+                name: "Georgette Embroidered Plum Purple Straight Cut Sharara Suit",
+                price: 126.0,
+                originalPrice: 182.0,
+                discount: "31% Off",
+                categories: ["Salwar Kameez", "Sharara Suit"],
+                type: "Embroidered Sharara Suit",
+                style: ["Side Slit"],
+                occasions: ["Wedding Wear", "Guest of Wedding Wear", "Sangeet"],
+                festivals: ["Diwali", "Eid", "Navratri"],
+                fabric: {
+                    top: "Georgette",
+                    bottom: "Georgette",
+                    dupatta: "Net"
+                },
+                color: "Plum Purple",
+                work: ["Resham Work", "Sequins Work", "Thread Work"],
+                components: ["Top (Included Lining)", "Bottom", "Dupatta"],
+                customization: "Up to 58 inches",
+                description: "This spaghetti strap and sleeveless suit is adorned with sequins and resham thread work. Completed with georgette sharara pants in plum purple color with plum purple net dupatta. Sharara pants have resham thread work. Dupatta accentuated with sequins and resham thread work.",
+                colorVariationNotice: true,
+                images: [
+                    "/images/products/LSTV125834.webp"
+                ]
+            }
+        ];
+    </script>
+
+
+    <script>
+        // Helper function to render star ratings
+        function renderStaticRating(rating) {
+            let starsHtml = '';
+            for (let i = 1; i <= 5; i++) {
+                if (i <= rating) {
+                    starsHtml += '<i class="fas fa-star"></i>'; // Full star
+                } else if (i - 0.5 === rating) {
+                    starsHtml += '<i class="fas fa-star-half-alt"></i>'; // Half star
+                } else {
+                    starsHtml += '<i class="far fa-star"></i>'; // Empty star
+                }
+            }
+            return starsHtml;
+        }
+
+        // Helper function to capitalize first letter for specifications
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM Content Loaded: Starting product details script.');
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+            const productDetailsContainer = document.getElementById('product-details-container');
+            const productPageTitle = document.getElementById('productPageTitle');
+
+            console.log('Extracted Product ID from URL:', productId);
+
+            if (!productId) {
+                productDetailsContainer.innerHTML = '<p class="error-message">Product ID not found in URL.</p>';
+                productPageTitle.textContent = 'Product Not Found - DesiWear';
+                console.error('Error: Product ID is missing from the URL.');
+                return;
+            }
+
+            // Access productsData directly, no import needed
+            const product = productsData.find(p => p.id === productId);
+
+            if (product) {
+                console.log('Product found:', product);
+
+                // Update page title
+                productPageTitle.textContent = `${product.name} - DesiWear`;
+                document.getElementById('product-name').textContent = product.name;
+                console.log('Product name and page title set:', product.name);
+
+                // 1. Breadcrumbs
+                const breadcrumbCategory = document.getElementById('breadcrumb-category');
+                const breadcrumbProductName = document.getElementById('breadcrumb-product-name');
+                if (product.categories && product.categories.length > 0) {
+                    breadcrumbCategory.innerHTML = `<a href="products.html?category=${encodeURIComponent(product.categories[0])}">${product.categories[0]}</a>`;
+                    console.log('Breadcrumb category set:', product.categories[0]);
+                } else {
+                    breadcrumbCategory.style.display = 'none'; // Hide if no category
+                    console.log('No product category found, hiding breadcrumb category.');
+                }
+                breadcrumbProductName.textContent = product.name;
+                console.log('Breadcrumb product name set:', product.name);
+
+                // 2. Price
+                const priceContainer = document.getElementById('product-price');
+                let priceHtml = `<span class="current-price">₹${product.price.toFixed(2)}</span>`;
+                if (product.originalPrice) {
+                    priceHtml += `<span class="original-price">₹${product.originalPrice.toFixed(2)}</span>`;
+                }
+                priceContainer.innerHTML = priceHtml;
+                console.log('Product price set. Current: ₹' + product.price.toFixed(2) + (product.originalPrice ? ', Original: ₹' + product.originalPrice.toFixed(2) : ''));
+
+
+                // 3. Rating (using example data for now as not in product object)
+                const averageRating = 4.5;
+                const numberOfReviews = 120;
+                document.getElementById('product-rating-stars').innerHTML = renderStaticRating(averageRating);
+                document.getElementById('product-review-count').textContent = `(${numberOfReviews} reviews)`;
+                console.log('Product rating set. Avg:', averageRating, 'Reviews:', numberOfReviews);
+
+                // 4. Availability (using placeholder, add 'inStock' property to product data if needed)
+                document.getElementById('product-availability-status').textContent = 'In Stock';
+                console.log('Product availability set to "In Stock".');
+
+                // 5. Image Gallery
+                const thumbnailsContainer = document.getElementById('product-thumbnails');
+                const mainImageContainer = document.getElementById('product-main-image');
+
+                if (product.images && product.images.length > 0) {
+                    const defaultImage = product.images[0]; // Use the first image for all thumbnails and initial main display
+                    console.log('Image gallery: Default image selected:', defaultImage);
+
+                    // Set initial main image
+                    mainImageContainer.innerHTML = `<img src="${defaultImage}" alt="${product.name}" class="product-main-image-display">`;
+                    console.log('Main product image set.');
+
+                    // Create 4 thumbnails using the same image
+                    thumbnailsContainer.innerHTML = ''; // Clear previous content
+                    for (let i = 0; i < 4; i++) { // Wireframe shows 4 thumbnails
+                        const thumbnailWrapper = document.createElement('div');
+                        thumbnailWrapper.classList.add('thumbnail-wrapper');
+                        const thumbnailImg = document.createElement('img');
+                        thumbnailImg.src = defaultImage; // Use the same image for all thumbnails
+                        thumbnailImg.alt = `${product.name} thumbnail ${i + 1}`;
+                        thumbnailImg.classList.add('product-thumbnail-image');
+                        thumbnailWrapper.appendChild(thumbnailImg);
+                        thumbnailsContainer.appendChild(thumbnailWrapper);
+
+                        // Add active class to the first thumbnail
+                        if (i === 0) {
+                            thumbnailWrapper.classList.add('active');
+                        }
+
+                        thumbnailWrapper.addEventListener('click', () => {
+                            console.log(`Thumbnail ${i + 1} clicked. Setting main image to ${defaultImage}`);
+                            document.querySelectorAll('.thumbnail-wrapper').forEach(t => t.classList.remove('active'));
+                            thumbnailWrapper.classList.add('active');
+                            mainImageContainer.innerHTML = `<img src="${defaultImage}" alt="${product.name}" class="product-main-image-display">`;
+                        });
+                    }
+                    console.log('Thumbnails created and click listeners attached.');
+                } else {
+                    console.warn('No images found for this product.');
+                    mainImageContainer.innerHTML = '<p>No image available</p>';
+                }
+
+                // 6. Options (Size and Color) - Populate with example data for now
+                const sizeSelect = document.getElementById('size');
+                const colorSelect = document.getElementById('color');
+
+                // Example sizes (you'd ideally fetch these from product data)
+                const sizes = ['S', 'M', 'L', 'XL', 'XXL'];
+                sizeSelect.innerHTML = '<option value="">Select Size</option>'; // Reset
+                sizes.forEach(size => {
+                    const option = document.createElement('option');
+                    option.value = size;
+                    option.textContent = size;
+                    sizeSelect.appendChild(option);
+                });
+                console.log('Size options populated:', sizes);
+
+                // Example colors (you'd ideally fetch these from product data)
+                const colors = ['Red', 'Blue', 'Green', 'Gold'];
+                colorSelect.innerHTML = '<option value="">Select Color</option>'; // Reset
+                colors.forEach(color => {
+                    const option = document.createElement('option');
+                    option.value = color;
+                    option.textContent = color;
+                    colorSelect.appendChild(option);
+                });
+                console.log('Color options populated:', colors);
+
+
+                // 7. Quantity
+                const quantityInput = document.getElementById('quantity');
+                const quantityDecreaseBtn = document.querySelector('.quantity-decrease');
+                const quantityIncreaseBtn = document.querySelector('.quantity-increase');
+
+                quantityDecreaseBtn.addEventListener('click', () => {
+                    if (parseInt(quantityInput.value) > 1) {
+                        quantityInput.value = parseInt(quantityInput.value) - 1;
+                        console.log('Quantity decreased to:', quantityInput.value);
+                    }
+                });
+
+                quantityIncreaseBtn.addEventListener('click', () => {
+                    quantityInput.value = parseInt(quantityInput.value) + 1;
+                    console.log('Quantity increased to:', quantityInput.value);
+                });
+                console.log('Quantity controls initialized.');
+
+                // 8. Tab Functionality (Product Story, Specifications, Shipping & Returns, Customer Reviews)
+                const tabButtons = document.querySelectorAll('.product-tabs-section .tab-button');
+                const tabContents = document.querySelectorAll('.product-tabs-section .tab-content');
+
+                tabButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const tabId = button.getAttribute('data-tab');
+                        console.log('Tab button clicked:', tabId);
+
+                        tabButtons.forEach(btn => btn.classList.remove('active'));
+                        tabContents.forEach(content => content.classList.remove('active'));
+
+                        button.classList.add('active');
+                        document.getElementById(tabId).classList.add('active');
+                        console.log(`Tab '${tabId}' activated.`);
+                    });
+                });
+                console.log('Tab functionality initialized.');
+
+                // Populate Tab Content: Product Story
+                document.getElementById('story').innerHTML = `<p>${product.description || 'No detailed product story available.'}</p>`;
+                console.log('Product story tab content populated.');
+
+                // Populate Tab Content: Specifications
+                const specificationsList = [];
+                if (product.fabric) {
+                    for (const key in product.fabric) {
+                        specificationsList.push(`<li><strong>${capitalizeFirstLetter(key)}:</strong> ${product.fabric [key]}</li>`);
+                    }
+                }
+                if (product.type) specificationsList.push(`<li><strong>Type:</strong> ${product.type}</li>`);
+                if (product.style && product.style.length > 0) {
+                    specificationsList.push(`<li><strong>Style:</strong> ${product.style.join(', ')}</li>`);
+                }
+                if (product.occasions && product.occasions.length > 0) {
+                    specificationsList.push(`<li><strong>Occasions:</strong> ${product.occasions.join(', ')}</li>`);
+                }
+                if (product.festivals && product.festivals.length > 0) {
+                    specificationsList.push(`<li><strong>Festivals:</strong> ${product.festivals.join(', ')}</li>`);
+                }
+                if (product.color) specificationsList.push(`<li><strong>Color:</strong> ${product.color}</li>`);
+                if (product.work && product.work.length > 0) {
+                    specificationsList.push(`<li><strong>Work:</strong> ${product.work.join(', ')}</li>`);
+                }
+                if (product.components && product.components.length > 0) {
+                    specificationsList.push(`<li><strong>Components:</strong> ${product.components.join(', ')}</li>`);
+                }
+                if (product.customization) specificationsList.push(`<li><strong>Customization:</strong> ${product.customization}</li>`);
+
+                document.getElementById('specifications').innerHTML = specificationsList.length > 0 ? `<ul>${specificationsList.join('')}</ul>` : '<p>No specific details available for this product.</p>';
+                console.log('Specifications tab content populated.');
+
+                // Populate Tab Content: Shipping & Returns
+                document.getElementById('shipping').innerHTML = `
+                    <p><strong>Shipping:</strong> We offer standard and express shipping options. Estimated delivery times vary based on location.</p>
+                    <p>Standard Shipping: 7-10 business days</p>
+                    <p>Express Shipping: 3-5 business days</p>
+                    <p><strong>Returns:</strong> We accept returns within 30 days of delivery. Items must be unworn, unwashed, and in original condition with tags attached. Please refer to our full <a href="returns-exchanges.html">Returns & Exchanges Policy</a> for more details.</p>
+                `; // Placeholder content
+                console.log('Shipping & Returns tab content populated.');
+
+
+                // 9. Customer Reviews Tab Content
+                const overallRatingStarsTab = document.getElementById('overall-rating-stars-tab');
+                const overallReviewCountTab = document.getElementById('overall-review-count-tab');
+                const customerReviewsList = document.getElementById('customer-reviews-list');
+
+                renderStaticRating(4.8, overallRatingStarsTab); // Example overall rating
+                overallReviewCountTab.textContent = `(35 Reviews)`; // Example count
+
+                const reviews = [
+                    { author: 'Priya S.', rating: 5, comment: 'Absolutely stunning! The quality is exceptional and the fit was perfect. Received so many compliments.' },
+                    { author: 'Ananya P.', rating: 4, comment: 'Beautiful lehenga, even better in person. Shipping was quicker than expected. Highly recommend!' },
+                    { author: 'Rina K.', rating: 5, comment: 'DesiWear truly understands traditional elegance. My saree was a showstopper at the Diwali celebration!' },
+                    { author: 'Mohan L.', rating: 3.5, comment: 'The product is good, but the color was slightly different than shown online. Still happy with the purchase.' },
+                ];
+                console.log('Customer reviews data (example):', reviews);
+
+                if (reviews.length > 0) {
+                    customerReviewsList.innerHTML = reviews.map(review => `
+                        <div class="customer-review-item">
+                            <div class="review-header">
+                                <span class="review-author">${review.author}</span>
+                                <div class="star-rating small">${renderStaticRating(review.rating)}</div>
+                            </div>
+                            <p class="review-comment">${review.comment}</p>
+                        </div>
+                    `).join('');
+                    console.log('Customer reviews list populated.');
+                } else {
+                    customerReviewsList.innerHTML = '<p>No customer reviews available yet.</p>';
+                    console.log('No customer reviews to display.');
+                }
+
+
+                // 10. "You Might Also Like" Section
+                const relatedProductsContainer = document.getElementById('related-products');
+                // Filter out the current product and take a few others as "related"
+                const filteredProducts = productsData.filter(p => p.id !== productId);
+                const productsToShow = filteredProducts.slice(0, 5); // Show first 5 unrelated products
+                console.log('Related products to display:', productsToShow.map(p => p.name));
+
+                if (productsToShow.length > 0) {
+                    relatedProductsContainer.innerHTML = productsToShow.map(relatedProduct => `
+                        <article class="product-card">
+                            ${relatedProduct.discount ? `<div class="product-badge">${relatedProduct.discount}</div>` : ''}
+                            <img src="${relatedProduct.images && relatedProduct.images.length > 0 ? relatedProduct.images[0] : 'images/placeholder.webp'}" alt="${relatedProduct.name}" class="product-image">
+                            <div class="product-details">
+                                <h3 class="product-card-title">${relatedProduct.name}</h3>
+                                <div class="price">
+                                    <span class="current-price">₹${relatedProduct.price.toFixed(2)}</span>
+                                    ${relatedProduct.originalPrice ? `<span class="original-price">₹${relatedProduct.originalPrice.toFixed(2)}</span>` : ''}
+                                </div>
+                                <a href="product-details.html?id=${relatedProduct.id}" class="btn btn-primary btn-small">View Details</a>
+                            </div>
+                        </article>
+                    `).join('');
+                    console.log('Related products section populated.');
+                } else {
+                    relatedProductsContainer.innerHTML = '<p>No related products found.</p>';
+                    console.log('No related products to display.');
+                }
+
+                console.log('Product details page rendering complete for ID:', productId);
+
+            } else {
+                productDetailsContainer.innerHTML = '<p class="error-message">Product not found.</p>';
+                productPageTitle.textContent = 'Product Not Found - DesiWear';
+                console.error(`Error: Product with ID "${productId}" not found in productsData.`);
+            }
+        });
+    </script>
+    <script src="js/main.js"></script>
 </body>
 </html>

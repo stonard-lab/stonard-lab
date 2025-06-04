@@ -3,405 +3,560 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DesiWear - Exquisite Traditional Attire</title>
-    <link rel="icon" href="images/logo.png" type="image/png">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+    <title>DesiWear - Traditional Indian Clothing & Fashion</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/components.css">
-
-    <script type="module" src="js/main.js" defer></script>
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Inline critical CSS for faster initial render */
+        .no-scroll { overflow: hidden; }
+    </style>
 </head>
 <body>
-    <header class="main-header">
-        <div class="container header-content">
+    <div class="overlay"></div>
+    
+    <header class="header">
+        <div class="container header-container">
             <div class="logo">
-                <a href="index.html">
-                    <img src="images/logo.png" alt="DesiWear Home" width="180" height="60">
+                <a href="index.html" aria-label="DesiWear Home">
+                    <img src="images/logo.png" alt="DesiWear Logo" width="180" height="40" loading="lazy">
                 </a>
             </div>
 
-            <nav class="main-nav desktop-nav">
+            <nav class="main-nav desktop-nav" aria-label="Main Navigation">
                 <ul>
+                    <li><a href="index.html">Home</a></li>
                     <li><a href="products.html">Indian Clothes</a></li>
-                    <li><a href="products.html?filter=new-arrivals">New Arrivals</a></li>
-                    <li><a href="products.html?category=sarees">Sarees</a></li>
-                    <li><a href="products.html?category=lehengas">Lehengas</a></li>
-                    <li><a href="products.html?category=salwar-suits">Salwar Suits</a></li>
+                    <li><a href="products.html?new=true">New Arrivals</a></li>
+                    <li><a href="products.html?category=Sarees">Sarees</a></li>
+                    <li><a href="products.html?category=Lehengas">Lehengas</a></li>
+                    <li><a href="products.html?category=Salwar Suits">Salwar Suits</a></li>
                 </ul>
-
             </nav>
 
             <div class="header-actions">
-                <div class="search-container">
-                    <form class="search-bar" role="search">
-                        <input type="text" id="search-input" class="search-input" placeholder="Search...">
-                        <button type="submit" class="icon-button" aria-label="Search">
+                <div class="user-utilities">
+                    <div class="search-container">
+                        <button class="search-toggle utility-icon" aria-label="Toggle search bar">
                             <i class="fas fa-search"></i>
                         </button>
-                    </form>
-                </div>
-                
-                <div class="action-icons">
-                    <a href="#" class="icon-button" aria-label="Account">
+                        <input type="text" class="search-input" placeholder="Search DesiWear..." aria-label="Search input field">
+                    </div>
+
+                    <a href="account.html" class="utility-icon" aria-label="My Account">
                         <i class="fas fa-user"></i>
                     </a>
-                    <a href="#" class="icon-button" aria-label="Wishlist">
+                    <a href="wishlist.html" class="utility-icon" aria-label="My Wishlist">
                         <i class="fas fa-heart"></i>
-                        <span class="wishlist-count">0</span>
                     </a>
-                    <div class="shopping-cart-container">
-                        <a href="#" class="icon-button cart-icon" aria-label="Shopping Cart">
-                            <i class="fas fa-shopping-cart"></i>
-                            <span class="cart-item-count">0</span>
-                        </a>
-                        <div class="cart-popup">
-                            <div class="cart-items">
-                                <p>Your cart is empty.</p>
-                            </div>
-                            <div class="cart-actions">
-                                <a href="shopping-cart.html" class="btn btn-view-cart">View Cart</a>
-                                <a href="checkout.html" class="btn btn-checkout">Checkout</a>
-                            </div>
+                </div>
+
+                <div class="cart-wrapper">
+                    <a href="shopping-cart.html" class="cart-button utility-icon" aria-label="Shopping Cart">
+                        <i class="fas fa-shopping-cart cart-icon"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <div class="cart-popup-summary">
+                        <h4>Your Cart (<span class="cart-items-count">0</span> items)</h4>
+                        <div class="cart-items-list">
+                            <p>No items in cart yet.</p>
+                        </div>
+                        <div class="cart-actions">
+                            <a href="shopping-cart.html" class="btn btn-primary btn-small">View Cart</a>
+                            <a href="checkout.html" class="btn btn-secondary btn-small">Checkout</a>
                         </div>
                     </div>
                 </div>
-                
-                <button class="icon-button mobile-nav-toggle" aria-label="Toggle navigation">
+
+                <button class="hamburger-menu" aria-label="Open navigation menu">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
         </div>
-        
-        <nav class="mobile-nav container">
-            <ul>
-                <ul>
-                    <li><a href="products.html">Indian Clothes</a></li>
-                    <li><a href="products.html?filter=new-arrivals">New Arrivals</a></li>
-                    <li><a href="products.html?filter=sarees">Sarees</a></li>
-                    <li><a href="products.html?filter=lehengas">Lehengas</a></li>
-                    <li><a href="products.html?filter=salwar-suits">Salwar Suits</a></li>
-
-                <li><a href="#">Account</a></li>
-                <li><a href="#">Wishlist</a></li>
-            </ul>
-        </nav>
     </header>
 
-<main>
-    <section class="hero-section">
-        <div class="hero-image" style="background-image: url('images/hero-image.jpg');"></div>
-        <div class="hero-content container">
-            <h1>Discover Timeless Indian Fashion</h1>
-            <p>Elegance and tradition woven into every thread.</p>
-            <div class="hero-cta">
-                <a href="#featured-products" class="btn btn-primary">Shop Now</a>
-                <a href="#" class="btn btn-secondary">Explore Collections</a>
+    <nav class="mobile-nav" aria-label="Mobile Navigation">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Indian Clothes</a></li>
+            <li><a href="products.html?new=true">New Arrivals</a></li>
+            <li><a href="products.html?category=Sarees">Sarees</a></li>
+            <li><a href="products.html?category=Lehengas">Lehengas</a></li>
+            <li><a href="products.html?category=Salwar Suits">Salwar Suits</a></li>
+            <li><a href="account.html">My Account</a></li>
+            <li><a href="wishlist.html">My Wishlist</a></li>
+            <li><a href="shopping-cart.html">Shopping Cart</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="hero-section">
+            <div class="hero-content container">
+                <h1>Discover Timeless Indian Fashion</h1>
+                <p>Elegance and tradition woven into every thread.</p>
+                <a href="products.html?new=true" class="btn btn-primary hero-cta">Shop New Collection</a>
             </div>
-        </div>
-    </section>
-
-    <section id="featured-products" class="section-padding" style="background-color: #f8f9fa;">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Latest & Greatest</h2>
-                <a href="#" class="view-all">View All</a>
+            <div class="hero-image">
+                <img src="images/hero-image.jpg" alt="Beautiful Desi woman in exquisite traditional attire" width="1600" height="900" loading="eager">
             </div>
+        </section>
 
-            <div class="trending-products-highlights">
-                <h3>Featured Products</h3>
-                <div class="product-grid" id="trending-products-container">
+        <section class="product-showcase section-padding">
+            <div class="container">
+                <section class="trending-products">
+                    <div class="section-header">
+                        <h2>Trending This Week</h2>
+                        <a href="products.html?trending=true" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
                     </div>
+                    <div class="product-grid">
+                        <article class="product-card">
+                            <div class="product-badge">Hot</div>
+                            <img src="images/products/lehenga-style-1.webp" alt="Red Embroidered Lehenga Choli" class="product-image" loading="lazy">
+                            <div class="product-details">
+                                <h3>Red Embroidered Lehenga Choli</h3>
+                                <div class="price">₹180</div>
+                                <a href="product-details.html?id=TRND1001" class="btn btn-primary btn-small">View Details</a>
+                            </div>
+                        </article>
+
+                        <article class="product-card">
+                            <div class="product-badge">Popular</div>
+                            <img src="images/products/lehenga-style-2.webp" alt="Blue Silk Saree with Zari Border" class="product-image" loading="lazy">
+                            <div class="product-details">
+                                <h3>Blue Silk Saree with Zari Border</h3>
+                                <div class="price">
+                                    <span class="current-price">₹110</span>
+                                    <span class="original-price">₹150</span>
+                                </div>
+                                <a href="product-details.html?id=TRND1002" class="btn btn-primary btn-small">View Details</a>
+                            </div>
+                        </article>
+
+                        <article class="product-card">
+                            <img src="images/products/lehenga-style-3.webp" alt="Designer Anarkali Gown" class="product-image" loading="lazy">
+                            <div class="product-details">
+                                <h3>Designer Anarkali Gown</h3>
+                                <div class="price">₹250</div>
+                                <a href="product-details.html?id=TRND1003" class="btn btn-primary btn-small">View Details</a>
+                            </div>
+                        </article>
+                        <article class="product-card">
+                            <img src="images/products/gown-style-4.webp" alt="Elegant Kurta Pajama for Men" class="product-image" loading="lazy">
+                            <div class="product-details">
+                                <h3>Elegant Kurta Pajama for Men</h3>
+                                <div class="price">₹95</div>
+                                <a href="product-details.html?id=TRND1004" class="btn btn-primary btn-small">View Details</a>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="wedding-collection section-padding-y">
+                    <h2 class="text-center">Wedding Collection</h2>
+                    <p class="section-subtitle">Find your perfect bridal and occasion wear</p>
+                    <div class="collection-grid">
+                        <div class="collection-item">
+                            <img src="images/products/wedding-lehenga-1.jpg" alt="Bridal Lehengas" loading="lazy">
+                            <div class="collection-content">
+                                <h3>Bridal Lehengas</h3>
+                                <a href="products.html?category=Lehengas&occasion=Wedding Wear" class="btn btn-outline-white btn-medium">Shop Now <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="collection-item">
+                            <img src="images/products/wedding-lehenga-2.jpg" alt="Reception Wear" loading="lazy">
+                            <div class="collection-content">
+                                <h3>Reception Wear</h3>
+                                <a href="products.html?occasion=Reception" class="btn btn-outline-white btn-medium">Shop Now <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="new-arrivals-section section-padding-y">
+                    <div class="section-header">
+                        <h2>New Arrivals</h2>
+                        <a href="products.html?new=true" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="products-grid horizontal-scroll-grid">
+                        <article class="product-card">
+                            <div class="product-badge">-20% Off</div>
+                            <img src="images/products/gown-style-1.webp" alt="Mustard Yellow Georgette Sharara Suit" class="product-image" loading="lazy">
+                            <div class="product-details">
+                                <h3>Mustard Yellow Georgette Sharara Suit with Gota Patti and Zari Work</h3>
+                                <div class="price">
+                                    <span class="current-price">₹146</span>
+                                    <span class="original-price">₹182</span>
+                                </div>
+                                <a href="product-details.html?id=LSTV125834" class="btn btn-primary btn-small">View Details</a>
+                            </div>
+                        </article>
+
+                        <article class="product-card">
+                            <div class="product-badge">-20% Off</div>
+                            <img src="images/products/gown-style-2.webp" alt="Mustard Yellow Georgette Sharara Suit" class="product-image" loading="lazy">
+                            <div class="product-details">
+                                <h3>Mustard Yellow Georgette Sharara Suit with Embroidery</h3>
+                                <div class="price">
+                                    <span class="current-price">₹146</span>
+                                    <span class="original-price">₹182</span>
+                                </div>
+                                <a href="product-details.html?id=LSTV125835" class="btn btn-primary btn-small">View Details</a>
+                            </div>
+                        </article>
+
+                        <article class="product-card">
+                            <div class="product-badge">-20% Off</div>
+                            <img src="images/products/gown-style-3.webp" alt="Mustard Yellow Georgette Sharara Suit" class="product-image" loading="lazy">
+                            <div class="product-details">
+                                <h3>Mustard Yellow Georgette Sharara Suit with Zari Work</h3>
+                                <div class="price">
+                                    <span class="current-price">₹146</span>
+                                    <span class="original-price">₹182</span>
+                                </div>
+                                <a href="product-details.html?id=LSTV125836" class="btn btn-primary btn-small">View Details</a>
+                            </div>
+                        </article>
+
+                        <article class="product-card">
+                            <div class="product-badge">-20% Off</div>
+                            <img src="images/products/gown-style-4.webp" alt="Mustard Yellow Chinnon Sharara Suit" class="product-image" loading="lazy">
+                            <div class="product-details">
+                                <h3>Mustard Yellow Chinnon Sharara Suit with Gota Patti Work</h3>
+                                <div class="price">
+                                    <span class="current-price">₹146</span>
+                                    <span class="original-price">₹182</span>
+                                </div>
+                                <a href="product-details.html?id=LSTV125837" class="btn btn-primary btn-small">View Details</a>
+                            </div>
+                        </article>
+                        <article class="product-card">
+                            <div class="product-badge">New</div>
+                            <img src="images/products/gown-style-5.webp" alt="Green Embroidered Saree" class="product-image" loading="lazy">
+                            <div class="product-details">
+                                <h3>Green Embroidered Net Saree with Stone Work</h3>
+                                <div class="price">₹190</div>
+                                <a href="product-details.html?id=NA1005" class="btn btn-primary btn-small">View Details</a>
+                            </div>
+                        </article>
+                        <article class="product-card">
+                            <div class="product-badge">New</div>
+                            <img src="images/products/anarkali-style-1.webp" alt="Pink Banarasi Silk Saree" class="product-image" loading="lazy">
+                            <div class="product-details">
+                                <h3>Pink Banarasi Silk Saree with Traditional Motifs</h3>
+                                <div class="price">₹220</div>
+                                <a href="product-details.html?id=NA1006" class="btn btn-primary btn-small">View Details</a>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="shop-categories section-padding-y">
+                    <h2 class="text-center">Shop by Category</h2>
+                    <p class="section-subtitle text-center">Explore our exquisite collections</p>
+                    <div class="categories-grid">
+                        <div class="category-card">
+                            <img src="images/category-sarees.jpg" alt="Sarees" loading="lazy">
+                            <div class="category-content">
+                                <h3>Sarees</h3>
+                                <p>Traditional & Contemporary Styles</p>
+                                <a href="products.html?category=Sarees" class="btn btn-outline-white btn-small">Shop Now <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="category-card">
+                            <img src="images/category-salwar-suits.jpg" alt="Salwar Suits" loading="lazy">
+                            <div class="category-content">
+                                <h3>Salwar Suits</h3>
+                                <p>Elegant & Comfortable</p>
+                                <a href="products.html?category=Salwar Suits" class="btn btn-outline-white btn-small">Shop Now <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="category-card">
+                            <img src="images/category-kameez.jpg" alt="Kameez" loading="lazy">
+                            <div class="category-content">
+                                <h3>Kameez</h3>
+                                <p>Modern & Traditional</p>
+                                <a href="products.html?category=Kameez" class="btn btn-outline-white btn-small">Shop Now <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="category-card">
+                            <img src="images/category-lehengas.jpg" alt="Lehengas" loading="lazy">
+                            <div class="category-content">
+                                <h3>Lehengas</h3>
+                                <p>For Weddings & Special Occasions</p>
+                                <a href="products.html?category=Lehengas" class="btn btn-outline-white btn-small">Shop Now <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="best-sellers section-padding-y">
+                    <div class="section-header">
+                        <h2>Our Best Sellers</h2>
+                        <a href="products.html?bestsellers=true" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="product-grid">
+                        <article class="product-card">
+                            <img src="images/products/anarkali-style-1.webp" alt="Classic Gold Silk Saree" class="product-image" loading="lazy">
+                            <div class="product-details">
+                                <h3>Classic Gold Silk Saree</h3>
+                                <div class="price">₹175</div>
+                                <a href="product-details.html?id=BST1001" class="btn btn-primary btn-small">View Details</a>
+                            </div>
+                        </article>
+
+                        <article class="product-card">
+                            <div class="product-badge">Sale</div>
+                            <img src="images/products/anarkali-style-2.webp" alt="Embroidered Salwar Kameez Set" class="product-image" loading="lazy">
+                            <div class="product-details">
+                                <h3>Embroidered Salwar Kameez Set</h3>
+                                <div class="price">
+                                    <span class="current-price">₹99</span>
+                                    <span class="original-price">₹130</span>
+                                </div>
+                                <a href="product-details.html?id=BST1002" class="btn btn-primary btn-small">View Details</a>
+                            </div>
+                        </article>
+
+                        <article class="product-card">
+                            <img src="images/products/gown-style-3.webp" alt="Men's Kurta Pajama Set" class="product-image" loading="lazy">
+                            <div class="product-details">
+                                <h3>Men's Kurta Pajama Set</h3>
+                                <div class="price">₹85</div>
+                                <a href="product-details.html?id=BST1003" class="btn btn-primary btn-small">View Details</a>
+                            </div>
+                        </article>
+
+                        <article class="product-card">
+                            <img src="images/products/lehenga-style-1.webp" alt="Kids Lehenga Choli" class="product-image" loading="lazy">
+                            <div class="product-details">
+                                <h3>Kids Lehenga Choli</h3>
+                                <div class="price">₹60</div>
+                                <a href="product-details.html?id=BST1004" class="btn btn-primary btn-small">View Details</a>
+                            </div>
+                        </article>
+                    </div>
+                </section>
             </div>
+        </section>
 
-            <div class="wedding-lehengas">
-                <h3>Wedding Collection</h3>
-                <div class="wedding-grid">
-                    <div class="wedding-item">
-                        <img src="images/wedding-lehenga-1.jpg" alt="Ornate gold wedding lehenga">
-                        <div class="wedding-overlay">
-                            <h4>Bridal Lehengas</h4>
-                            <a href="#" class="btn btn-outline">Shop Now</a>
+        <section class="social-proof section-padding">
+            <div class="container">
+                <section class="customer-reviews section-padding-y">
+                    <h2 class="text-center">What Our Customers Say</h2>
+                    <p class="section-subtitle text-center">Hear from our happy customers</p>
+                    <div class="testimonial-grid">
+                        <div class="testimonial-card">
+                            <div class="testimonial-text">
+                                "Absolutely stunning! The quality is exceptional and the fit was perfect. I received so many compliments at my cousin's wedding."
+                            </div>
+                            <div class="testimonial-author">
+                                <strong>Priya Sharma</strong>
+                                <span>Delhi</span>
+                            </div>
+                        </div>
+
+                        <div class="testimonial-card">
+                            <div class="testimonial-text">
+                                "The lehenga I ordered was even more beautiful in person than in the photos. Shipping was faster than expected too!"
+                            </div>
+                            <div class="testimonial-author">
+                                <strong>Ananya Patel</strong>
+                                <span>Mumbai</span>
+                            </div>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="testimonial-text">
+                                "DesiWear truly understands traditional elegance. My saree was a showstopper at the Diwali celebration!"
+                            </div>
+                            <div class="testimonial-author">
+                                <strong>Rina Kapoor</strong>
+                                <span>London</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="wedding-item">
-                        <img src="images/wedding-lehenga-2.jpg" alt="Ornate gold wedding lehenga">
-                        <div class="wedding-overlay">
-                            <h4>Reception Wear</h4>
-                            <a href="#" class="btn btn-outline">Shop Now</a>
-                        </div>
+                </section>
+
+                <section class="blog-section section-padding-y">
+                    <div class="section-header">
+                        <h2>Our Latest Stories</h2>
+                        <a href="blog.html" class="view-all">View All Articles <i class="fas fa-arrow-right"></i></a>
                     </div>
-                </div>
+                    <div class="blog-grid">
+                        <article class="blog-card">
+                            <img src="images/blog-post-1.jpg" alt="Styling Your Wedding Lehenga" loading="lazy">
+                            <div class="blog-content">
+                                <span class="blog-category">Wedding</span>
+                                <h3>Styling Your Wedding Lehenga: Tips and Tricks</h3>
+                                <p>Discover expert tips for accessorizing your bridal lehenga to create the perfect look for your big day.</p>
+                                <div class="blog-meta">
+                                    <time datetime="2023-06-15">June 15, 2023</time>
+                                    <span>5 min read</span>
+                                </div>
+                                <a href="blog-post-1.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </article>
+
+                        <article class="blog-card">
+                            <img src="images/blog-post-1.jpg" alt="Festival Outfit Ideas" loading="lazy">
+                            <div class="blog-content">
+                                <span class="blog-category">Festival</span>
+                                <h3>Festival Outfit Ideas: Embrace the Vibrancy</h3>
+                                <p>Explore traditional yet contemporary outfit ideas for the upcoming festival season, from Diwali to Eid.</p>
+                                <div class="blog-meta">
+                                    <time datetime="2023-05-28">May 28, 2023</time>
+                                    <span>4 min read</span>
+                                </div>
+                                <a href="blog-post-2.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </article>
+
+                        <article class="blog-card">
+                            <img src="images/blog-post-1.jpg" alt="Modern Saree Draping Techniques" loading="lazy">
+                            <div class="blog-content">
+                                <span class="blog-category">Style Guide</span>
+                                <h3>Modern Saree Draping Techniques for Every Occasion</h3>
+                                <p>Learn innovative ways to drape your saree for different occasions and body types, from classic to contemporary.</p>
+                                <div class="blog-meta">
+                                    <time datetime="2023-04-10">April 10, 2023</time>
+                                    <span>7 min read</span>
+                                </div>
+                                <a href="blog-post-3.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </article>
+                    </div>
+                </section>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="new-arrivals section-padding">
-        <div class="container">
-            <h2 class="text-center">New Arrivals</h2>
-            <div class="product-carousel" id="new-arrivals-container">
-                </div>
-        </div>
-    </section>
+        <section class="newsletter section-padding">
+            <div class="container">
+                <h2 class="text-center">Stay Updated</h2>
+                <p class="text-center">Subscribe to our newsletter for the latest collections, exclusive offers, and style tips.</p>
 
-    <section class="categories section-padding">
-        <div class="container">
-            <h2 class="text-center">Shop by Category</h2>
-            <p class="section-subtitle text-center">Explore our exquisite collections</p>
-
-            <div class="category-grid">
-                <a href="#" class="category-card">
-                    <div class="category-card-image" style="background-image: url('images/category-sarees.jpg');"></div>
-                    <div class="category-card-content">
-                        <h3>Sarees</h3>
-                        <p>Traditional & Contemporary Styles</p>
-                        <span class="shop-now">Shop Now <i class="fas fa-arrow-right"></i></span>
-                    </div>
-                </a>
-
-                <a href="#" class="category-card">
-                    <div class="category-card-image" style="background-image: url('images/category-salwar-suits.jpg');"></div>
-                    <div class="category-card-content">
-                        <h3>Salwar Suits</h3>
-                        <p>Elegant & Comfortable</p>
-                        <span class="shop-now">Shop Now <i class="fas fa-arrow-right"></i></span>
-                    </div>
-                </a>
-
-                <a href="#" class="category-card">
-                    <div class="category-card-image" style="background-image: url('images/category-kameez.jpg');"></div>
-                    <div class="category-card-content">
-                        <h3>Kameez</h3>
-                        <p>Modern & Traditional</p>
-                        <span class="shop-now">Shop Now <i class="fas fa-arrow-right"></i></span>
-                    </div>
-                </a>
-
-                <a href="#" class="category-card">
-                    <div class="category-card-image" style="background-image: url('images/category-lehengas.jpg');"></div>
-                    <div class="category-card-content">
-                        <h3>Lehengas</h3>
-                        <p>For Weddings & Special Occasions</p>
-                        <span class="shop-now">Shop Now <i class="fas fa-arrow-right"></i></span>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <section class="best-sellers section-padding">
-        <div class="container">
-            <h2 class="text-center">Best Sellers</h2>
-            <div class="product-grid" id="best-sellers-container">
-                </div>
-        </div>
-    </section>
-
-    <section class="testimonials section-padding">
-        <div class="container">
-            <h2 class="text-center">What Our Customers Say</h2>
-            <p class="section-subtitle text-center">Hear from our happy customers</p>
-
-            <div class="review-carousel" id="customer-reviews-carousel">
-                <div class="review-item">
-                    <div class="review-content">
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <p>"Absolutely stunning! The quality is exceptional and the fit was perfect. I received so many compliments at my cousin's wedding."</p>
-                        <div class="review-author">
-                            <strong>Priya Sharma</strong>
-                            <span>Delhi</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="review-item">
-                    <div class="review-content">
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                        <p>"The lehenga I ordered was even more beautiful in person than in the photos. Shipping was faster than expected too!"</p>
-                        <div class="review-author">
-                            <strong>Ananya Patel</strong>
-                            <span>Mumbai</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="blog-section section-padding bg-light">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Latest Stories</h2>
-                <a href="#" class="view-all">View All Articles</a>
-            </div>
-
-            <div class="blog-posts-container" id="blog-posts-container">
-                <article class="blog-post-card">
-                    <div class="blog-post-image">
-                        <img src="images/blog-post-1.jpg" alt="Blog post on styling wedding lehengas" width="480" height="600" />
-                        <div class="blog-post-category">Wedding</div>
-                    </div>
-                    <div class="blog-post-content">
-                        <h3>Styling Your Wedding Lehenga</h3>
-                        <p class="post-excerpt">Discover expert tips for accessorizing your bridal lehenga to create the perfect look for your big day.</p>
-                        <div class="post-meta">
-                            <span class="post-date">June 15, 2023</span>
-                            <span class="read-time">5 min read</span>
-                        </div>
-                        <a href="#" class="btn btn-text">Read More <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </article>
-
-                <article class="blog-post-card">
-                    <div class="blog-post-image">
-                        <img src="images/wedding-lehenga-1.jpg" alt="Blog post on festival wear" width="480" height="600" />
-                        <div class="blog-post-category">Festival</div>
-                    </div>
-                    <div class="blog-post-content">
-                        <h3>Festival Outfit Ideas</h3>
-                        <p class="post-excerpt">Explore traditional yet contemporary outfit ideas for the upcoming festival season.</p>
-                        <div class="post-meta">
-                            <span class="post-date">May 28, 2023</span>
-                            <span class="read-time">4 min read</span>
-                        </div>
-                        <a href="#" class="btn btn-text">Read More <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </article>
-
-                <article class="blog-post-card">
-                    <div class="blog-post-image">
-                        <img src="images/category-sarees.jpg" alt="Blog post on saree draping" width="480" height="600" />
-                        <div class="blog-post-category">Style Guide</div>
-                    </div>
-                    <div class="blog-post-content">
-                        <h3>Modern Saree Draping Techniques</h3>
-                        <p class="post-excerpt">Learn innovative ways to drape your saree for different occasions and body types.</p>
-                        <div class="post-meta">
-                            <span class="post-date">April 10, 2023</span>
-                            <span class="read-time">7 min read</span>
-                        </div>
-                        <a href="#" class="btn btn-text">Read More <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <section class="newsletter-section">
-        <div class="container">
-            <div class="newsletter-content">
-                <h2>Stay Updated</h2>
-                <p>Subscribe to our newsletter for the latest collections, exclusive offers, and style tips.</p>
                 <form class="newsletter-form">
-                    <input type="email" placeholder="Your email address" required>
-                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                    <input type="email" placeholder="Your email address" required aria-label="Enter your email address for newsletter">
+                    <button type="submit" class="btn btn-secondary subscribe-button">Subscribe</button>
                 </form>
             </div>
-        </div>
-    </section>
-</main>
+        </section>
+    </main>
 
-    <footer class="main-footer">
-        <div class="footer-top">
-            <div class="container">
-                <div class="footer-columns">
-                    <div class="footer-col">
-                        <div class="footer-logo">
-                            <img src="images/logo.png" alt="DesiWear" width="150" height="100">
-                        </div>
-                        <p class="footer-about">DesiWear brings you the finest traditional Indian attire, blending heritage craftsmanship with contemporary designs.</p>
-                        <div class="footer-contact">
-                            <p><i class="fas fa-envelope"></i> info@desiwear.com</p>
-                            <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
-                        </div>
-                    </div>
-                    
-                    <div class="footer-col">
-                        <h4>Shop</h4>
-                        <ul>
-                            
-                            <li><a href="products.html">Indian Clothes</a></li>
-                            <li><a href="products.html?filter=new-arrivals">New Arrivals</a></li>
-                            <li><a href="products.html?category=sarees">Sarees</a></li>
-                            <li><a href="products.html?category=lehengas">Lehengas</a></li>
-                            <li><a href="products.html?category=salwar-suits">Salwar Suits</a></li>
-              
-                        </ul>
-                    </div>
-                    
-                    <div class="footer-col">
-                        <h4>Customer Service</h4>
-                        <ul>
-                            <li><a href="#">My Account</a></li>
-                            <li><a href="#">Order Tracking</a></li>
-                            <li><a href="#">Wishlist</a></li>
-                            <li><a href="#">Shipping Policy</a></li>
-                            <li><a href="#">Returns & Exchanges</a></li>
-                            <li><a href="#">FAQ</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="footer-col">
-                        <h4>About</h4>
-                        <ul>
-                            <li><a href="#">Our Story</a></li>
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="#">Careers</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Terms of Service</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                        </ul>
-                    </div>
+    <footer class="footer">
+        <div class="container footer-container-grid">
+            <div class="footer-column footer-brand">
+                <h3>DesiWear</h3>
+                <p>DesiWear brings you the finest traditional Indian attire, blending heritage craftsmanship with contemporary designs. We are committed to celebrating the richness of Indian culture through fashion.</p>
+                <div class="contact-info">
+                    <p><a href="mailto:info@desiwear.com"><i class="fas fa-envelope"></i> info@desiwear.com</a></p>
+                    <p><a href="tel:+15551234567"><i class="fas fa-phone"></i> +1 (555) 123-4567</a></p>
+                    <a href="https://wa.me/15551234567" target="_blank" rel="noopener noreferrer" class="whatsapp-link" aria-label="Chat with us on WhatsApp">
+                        <i class="fab fa-whatsapp"></i> WhatsApp Us
+                    </a>
                 </div>
             </div>
+
+            <div class="footer-column footer-links">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="products.html">Indian Clothes</a></li>
+                    <li><a href="products.html?new=true">New Arrivals</a></li>
+                    <li><a href="products.html?category=Sarees">Sarees</a></li>
+                    <li><a href="products.html?category=Lehengas">Lehengas</a></li>
+                    <li><a href="products.html?category=Salwar Suits">Salwar Suits</a></li>
+                    <li><a href="products.html?category=Kurta Pajamas">Kurta Pajamas</a></li>
+                    <li><a href="products.html?category=Jewelry">Jewelry</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column footer-links">
+                <h4>Information</h4>
+                <ul>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="register.html">Create Account</a></li>
+                    <li><a href="wishlist.html">My Wishlist</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column footer-links">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="order-tracking.html">Order Tracking</a></li>
+                    <li><a href="shipping-policy.html">Shipping Policy</a></li>
+                    <li><a href="returns-exchanges.html">Returns & Exchanges</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column footer-top-searches">
+                <h4>Top Searches</h4>
+                <ul>
+                    <li><a href="products.html?search=bridal+wear">Bridal Wear</a></li>
+                    <li><a href="products.html?search=party+wear">Party Wear</a></li>
+                    <li><a href="products.html?search=embroidered+sarees">Embroidered Sarees</a></li>
+                    <li><a href="products.html?search=mens+ethnic+wear">Men's Ethnic Wear</a></li>
+                    <li><a href="products.html?search=kids+ethnic+wear">Kids Ethnic Wear</a></li>
+                </ul>
+            </div>
         </div>
-        
+
         <div class="footer-bottom">
-            <div class="container">
-                <div class="footer-bottom-content">
-                    <div class="copyright">
-                        <p>&copy; 2023 DesiWear. All rights reserved.</p>
-                    </div>
-                    
-                    <div class="payment-methods">
-                        <span>We accept:</span>
-                        <i class="fab fa-cc-visa" aria-label="Visa"></i>
-                        <i class="fab fa-cc-mastercard" aria-label="Mastercard"></i>
-                        <i class="fab fa-cc-paypal" aria-label="PayPal"></i>
-                        <i class="fab fa-cc-amex" aria-label="American Express"></i>
-                    </div>
-                    
-                    <div class="social-media-icons">
-                        <span>Follow us:</span>
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
-                        <a href="#" class="whatsapp-icon" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                </div>
+            <div class="copyright">
+                © <span id="currentYear"></span> DesiWear. All rights reserved.
+            </div>
+            <div class="payment-methods">
+                <span>We accept:</span>
+                <i class="fab fa-cc-visa" aria-label="Visa"></i>
+                <i class="fab fa-cc-mastercard" aria-label="Mastercard"></i>
+                <i class="fab fa-cc-paypal" aria-label="PayPal"></i>
+                <i class="fab fa-cc-amex" aria-label="American Express"></i>
+            </div>
+            <div class="social-links">
+                <a href="https://facebook.com/desiwear" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com/desiwear" target="_blank" rel="noopener noreferrer" aria-label="Follow us on X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://pinterest.com/desiwear" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Pinterest"><i class="fab fa-pinterest"></i></a>
+                <a href="https://instagram.com/desiwear" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://youtube.com/desiwear" target="_blank" rel="noopener noreferrer" aria-label="Subscribe to our YouTube channel"><i class="fab fa-youtube"></i></a>
+                <a href="https://tiktok.com/@desiwear" target="_blank" rel="noopener noreferrer" aria-label="Follow us on TikTok"><i class="fab fa-tiktok"></i></a>
             </div>
         </div>
     </footer>
-</body>
-<script type="module" src="js/homepage.js"></script>
 
+    <script>
+        // Toggle mobile navigation
+        document.querySelector('.hamburger-menu').addEventListener('click', function() {
+            document.querySelector('.mobile-nav').classList.toggle('active');
+            document.querySelector('.overlay').classList.toggle('active');
+            document.body.classList.toggle('no-scroll');
+        });
+
+        // Close mobile nav when clicking on overlay
+        document.querySelector('.overlay').addEventListener('click', function() {
+            document.querySelector('.mobile-nav').classList.remove('active');
+            this.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+        });
+
+        // Close mobile nav when clicking on a link
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelector('.mobile-nav').classList.remove('active');
+                document.querySelector('.overlay').classList.remove('active');
+                document.body.classList.remove('no-scroll');
+            });
+        });
+
+        // Initialize current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+</body>
 </html>

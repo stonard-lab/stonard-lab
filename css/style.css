@@ -1,99 +1,109 @@
 /* Base Styles */
 :root {
-    --primary-color: #8e44ad;
-    --primary-dark: #6c3483;
-    --secondary-color: #f39c12;
-    --dark-color: #333;
-    --light-color: #f9f9f9;
-    --gray-color: #e0e0e0;
-    --text-color: #444;
-    --text-light: #777;
-    --white: #fff;
-    --black: #000;
-    --success-color: #27ae60;
-    --error-color: #e74c3c;
-    --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    --transition: all 0.3s ease;
+    --primary-color: #6c3483;      /* Slightly darker purple as specified in the later root */
+    --primary-dark: #512e5f;       /* Darker shade for hover states */
+    --secondary-color: #f39c12;    /* Orange for secondary actions */
+    --dark-color: #222;            /* Dark text/elements for better contrast */
+    --light-color: #fff;           /* Pure white for backgrounds */
+    --gray-color: #f4f4f4;         /* Lighter gray for backgrounds or borders */
+    --text-color: #222;            /* Main body text color */
+    --text-light: #666;            /* Lighter text for subtitles, etc. */
+    --white: #fff;                 /* White color */
+    --black: #000;                 /* Black color */
+    --success-color: #27ae60;      /* Green for success messages */
+    --error-color: #e74c3c;        /* Red for error messages */
+    --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); /* Consistent shadow for cards/elements */
+    --transition: all 0.3s ease;   /* Standard transition for interactive elements */
+    --border-radius: 8px;          /* Consistent border radius for various elements */
 }
 
+/* Universal box-sizing, reset margins/paddings */
 * {
-    margin: 0;
-    padding: 0;
+    margin: 20px;
+    padding: 1px;
     box-sizing: border-box;
 }
 
+/* Base font size for rem units, smooth scrolling */
 html {
-    font-size: 62.5%;
+    font-size: 62.5%; /* 1rem = 10px, for easier calculations */
     scroll-behavior: smooth;
 }
 
+/* Body typography and background */
 body {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.6rem;
-    line-height: 1.6;
-    color: var(--text-color);
-    background-color: var(--white);
-    overflow-x: hidden;
+    font-family: 'Poppins', sans-serif; /* Modern sans-serif font */
+    font-size: 1.6rem; /* Base font size: 16px */
+    line-height: 1.6; /* Good readability */
+    color: var(--text-color); /* Main text color */
+    background-color: var(--light-color); /* Pure white background */
+    overflow-x: hidden; /* Prevent horizontal scroll on small screens */
 }
 
+/* Heading typography */
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
+    font-family: 'Playfair Display', serif; /* Elegant serif font for headings */
+    font-weight: 700; /* Bold headings */
     line-height: 1.2;
-    margin-bottom: 1.5rem;
-    color: var(--dark-color);
+    margin-bottom: 1.5rem; /* Space below headings */
+    color: var(--dark-color); /* Dark color for headings */
 }
 
 h1 {
-    font-size: 4.8rem;
+    font-size: 4.8rem; /* 48px */
 }
 
 h2 {
-    font-size: 3.6rem;
+    font-size: 3.6rem; /* 36px */
 }
 
 h3 {
-    font-size: 2.8rem;
+    font-size: 2.8rem; /* 28px */
 }
 
 h4 {
-    font-size: 2.2rem;
+    font-size: 2.2rem; /* 22px */
 }
 
 p {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.5rem; /* Space below paragraphs */
 }
 
+/* Link styling */
 a {
     text-decoration: none;
-    color: var(--primary-color);
-    transition: var(--transition);
+    color: var(--primary-color); /* Primary brand color for links */
+    transition: var(--transition); /* Smooth transition on hover */
 }
 
 a:hover {
-    color: var(--primary-dark);
+    color: var(--primary-dark); /* Darker shade on hover */
 }
 
+/* Image styling */
 img {
     max-width: 100%;
     height: auto;
-    display: block;
+    display: block; /* Remove extra space below images */
 }
 
+/* List styling */
 ul {
-    list-style: none;
+    list-style: none; /* Remove default list bullets */
 }
 
-/* Utility Classes */
+/* Utility Classes --- */
+/* Buttons */
 .btn {
     display: inline-block;
     padding: 1.2rem 2.4rem;
-    border-radius: 4px;
+    border-radius: 4px; /* Slightly rounded corners */
     font-weight: 600;
     text-align: center;
     cursor: pointer;
     transition: var(--transition);
-    border: none;
+    border: none; /* No default border */
+    font-size: 1.6rem; /* Ensure button text is readable */
 }
 
 .btn-primary {
@@ -103,8 +113,8 @@ ul {
 
 .btn-primary:hover {
     background-color: var(--primary-dark);
-    transform: translateY(-3px);
-    box-shadow: var(--box-shadow);
+    transform: translateY(-3px); /* Subtle lift effect */
+    box-shadow: var(--box-shadow); /* Shadow on hover */
 }
 
 .btn-secondary {
@@ -113,20 +123,22 @@ ul {
 }
 
 .btn-secondary:hover {
-    opacity: 0.9;
+    opacity: 0.9; /* Slight opacity change on hover */
     transform: translateY(-3px);
     box-shadow: var(--box-shadow);
 }
 
 .btn-outline {
     background-color: transparent;
-    border: 2px solid var(--white);
-    color: var(--white);
+    border: 2px solid var(--primary-color); /* Border using primary color */
+    color: var(--primary-color); /* Text color matching border */
 }
 
 .btn-outline:hover {
-    background-color: var(--white);
-    color: var(--primary-color);
+    background-color: var(--primary-color); /* Fill with primary color on hover */
+    color: var(--white); /* Text becomes white */
+    transform: translateY(-3px);
+    box-shadow: var(--box-shadow);
 }
 
 .btn-text {
@@ -141,25 +153,32 @@ ul {
     text-decoration: underline;
 }
 
-.icon-button {
+.btn-small { /* Added for smaller buttons, like in product cards */
+    padding: 0.8rem 1.6rem;
+    font-size: 1.4rem;
+}
+
+/* Icon Buttons (for header utilities) */
+.utility-icon { /* Applied to <a> tags around icons */
     display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 4rem;
     height: 4rem;
     border-radius: 50%;
-    color: var(--dark-color);
+    color: var(--dark-color); /* Dark color for icons */
     transition: var(--transition);
-    position: relative;
+    font-size: 2rem; /* Larger icon size */
 }
 
-.icon-button:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-    color: var(--primary-color);
+.utility-icon:hover {
+    background-color: var(--gray-color); /* Light background on hover */
+    color: var(--primary-color); /* Primary color on hover */
 }
 
-.wishlist-count,
-.cart-item-count {
+/* Specific count badges (wishlist and cart, though cart count is in layout.css) */
+/* The cart-count is already defined in layout.css with absolute positioning */
+.wishlist-count { /* If you have a separate wishlist icon with a count */
     position: absolute;
     top: -5px;
     right: -5px;
@@ -175,12 +194,15 @@ ul {
     font-weight: 600;
 }
 
+/* Section Subtitle */
 .section-subtitle {
     color: var(--text-light);
     font-size: 1.8rem;
     margin-bottom: 3rem;
+    text-align: center; /* Subtitle usually centered under H2 */
 }
 
+/* View All Links */
 .view-all {
     font-weight: 600;
     color: var(--primary-color);
@@ -194,6 +216,7 @@ ul {
     text-decoration: underline;
 }
 
+/* Shop Now Button (specifically for category cards/hero image overlays) */
 .shop-now {
     display: inline-flex;
     align-items: center;
@@ -201,67 +224,489 @@ ul {
     font-weight: 600;
     color: var(--primary-color);
     transition: var(--transition);
-    text-shadow: 0 2px 8px rgba(0,0,0,0.25), 0 1px 0 #fff;
-    background: rgba(255,255,255,0.7);
-    padding: 0.2em 0.6em;
-    border-radius: 0.3em;
+    /* Subtle background and shadow for visibility over images */
+    background: rgba(255,255,255,0.95);
+    padding: 0.6rem 1.2rem; /* Adjusted padding for better button look */
+    border-radius: var(--border-radius); /* Use variable for consistency */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .shop-now:hover {
+    color: var(--primary-dark);
+    gap: 1rem; /* Slightly increase gap for subtle animation */
+    background: var(--white); /* Solid white on hover */
+}
+
+/* Product Card Styles --- */
+.product-card {
+    background-color: var(--white);
+    border: 1px solid var(--gray-color); /* Light border */
+    border-radius: var(--border-radius);
+    overflow: hidden; /* Ensures image corners are rounded */
+    box-shadow: var(--box-shadow); /* Subtle shadow */
+    transition: var(--transition);
+    position: relative; /* For badges */
+}
+
+.product-card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* More prominent shadow */
+}
+
+.product-image {
+    width: 100%;
+    height: 250px; /* Fixed height for product images */
+    object-fit: cover; /* Crop images to fit */
+    border-bottom: 1px solid var(--gray-color);
+}
+
+.product-details {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.product-details h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+    height: 3.6rem; /* Fixed height to prevent layout shifts with different titles */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limit to 2 lines */
+    line-clamp: 2; /* Standard property for compatibility */
+    line-clamp: 2; /* Standard property for compatibility */
+    -webkit-box-orient: vertical;
+}
+
+.price {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 0.5rem;
+}
+
+.current-price {
+    color: var(--primary-color);
+}
+
+.original-price {
+    font-size: 1.4rem;
+    color: var(--text-light);
+    text-decoration: line-through;
+}
+
+.product-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background-color: var(--secondary-color);
+    color: var(--white);
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    z-index: 10;
+}
+
+/* Category Card Styles --- */
+.category-card {
+    position: relative;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.category-card img {
+    width: 100%;
+    height: 250px; /* Consistent height for category images */
+    object-fit: cover;
+    display: block;
+}
+
+.category-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0)); /* Gradient overlay */
+    color: var(--white);
+    text-align: center;
+}
+
+.category-content h3 {
+    color: var(--white);
+    margin-bottom: 0.5rem;
+    font-size: 2.2rem;
+}
+
+.category-content p {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+}
+
+.category-content .btn { /* Style button inside category card */
+    background-color: var(--white);
+    color: var(--primary-color);
+    padding: 0.8rem 1.6rem;
+    font-size: 1.4rem;
+}
+
+.category-content .btn:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: var(--box-shadow);
+}
+
+
+/* Testimonial Card Styles --- */
+.testimonial-card {
+    background-color: var(--white);
+    padding: 2.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    border: 1px solid var(--gray-color);
+}
+
+.testimonial-text {
+    font-size: 1.6rem;
+    font-style: italic;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+}
+
+.testimonial-author {
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+.testimonial-author span {
+    display: block;
+    font-size: 1.4rem;
+    color: var(--text-light);
+    font-weight: 400;
+}
+
+/* Blog Card Styles --- */
+.blog-card {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+    border: 1px solid var(--gray-color);
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.blog-card img {
+    width: 100%;
+    height: 220px; /* Fixed height for blog images */
+    object-fit: cover;
+    display: block;
+}
+
+.blog-content {
+    padding: 1.5rem;
+}
+
+.blog-category {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--white);
+    font-size: 1.1rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.blog-content h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    min-height: 5rem; /* Ensure consistent height for titles */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limit to 2 lines */
+    -webkit-box-orient: vertical;
+}
+
+.blog-content p {
+    font-size: 1.4rem;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    min-height: 6rem; /* Consistent height for paragraphs */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Limit to 3 lines */
+    -webkit-box-orient: vertical;
+}
+
+.blog-meta {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+}
+
+.blog-meta span:not(:last-child)::after {
+    content: " | ";
+    margin: 0 0.5rem;
+}
+
+.read-more {
+    font-weight: 600;
+    color: var(--primary-color);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.read-more:hover {
     color: var(--primary-dark);
     gap: 1rem;
 }
 
-:root {
-    --primary-color: #6c3483;      /* Slightly darker purple */
-    --primary-dark: #512e5f;
-    --secondary-color: #f39c12;
-    --dark-color: #222;            /* Darker for better contrast */
-    --light-color: #fff;           /* Pure white for backgrounds */
-    --gray-color: #f4f4f4;         /* Lighter gray */
-    --text-color: #222;            /* Dark text for readability */
-    --text-light: #666;            /* Slightly darker for contrast */
-    --white: #fff;
-    --black: #000;
-    --success-color: #27ae60;
-    --error-color: #e74c3c;
-    --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-    --transition: all 0.3s ease;
-}
-
-body {
-    color: var(--text-color);
-    background-color: var(--light-color);
-}
-
-h1, h2, h3, h4, h5, h6 {
-    color: var(--dark-color);
-}
-
-.btn-primary,
-.btn-secondary {
-    color: var(--white);
-}
-
-.btn-outline {
-    border: 2px solid var(--primary-color);
-    color: var(--primary-color);
-}
-
-.btn-outline:hover {
+/* Newsletter Section --- */
+.newsletter {
     background-color: var(--primary-color);
     color: var(--white);
+    text-align: center;
+    padding: 4rem 0;
 }
 
-.section-subtitle {
+.newsletter h2 {
+    color: var(--white);
+    margin-bottom: 1rem;
+}
+
+.newsletter p {
+    font-size: 1.8rem;
+    margin-bottom: 2.5rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.newsletter-form {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.newsletter-form input[type="email"] {
+    flex-grow: 1;
+    padding: 1.2rem 2rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.6rem;
+    outline: none;
+    color: var(--dark-color); /* Ensure text is visible */
+}
+
+.newsletter-form input[type="email"]::placeholder {
     color: var(--text-light);
 }
 
-.shop-now {
-    color: var(--primary-color);
-    background: rgba(255,255,255,0.95);
+.newsletter-form .subscribe-button {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    padding: 1.2rem 2.5rem;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: var(--transition);
 }
 
-.shop-now:hover {
-    color: var(--primary-dark);
+.newsletter-form .subscribe-button:hover {
+    background-color: var(--primary-dark); /* Subtle change on hover */
+    transform: translateY(-2px);
+    box-shadow: var(--box-shadow);
+}
+
+/* Specific styling for Wedding Collection */
+.wedding-collection {
+    text-align: center;
+    margin-top: 5rem; /* Space from previous section */
+}
+
+.wedding-collection h2 {
+    margin-bottom: 2rem;
+}
+
+.collection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.collection-item {
+    position: relative;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+}
+
+.collection-item img {
+    width: 100%;
+    height: 300px; /* Fixed height for consistent look */
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.8); /* Slightly darken image for text readability */
+    transition: filter 0.3s ease;
+}
+
+.collection-item:hover img {
+    filter: brightness(0.9); /* Less dark on hover */
+}
+
+.collection-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0));
+    color: var(--white);
+    text-align: center;
+}
+
+.collection-content h3 {
+    color: var(--white);
+    font-size: 2.4rem;
+    margin-bottom: 1rem;
+}
+
+.collection-content .btn {
+    background-color: var(--white);
+    color: var(--primary-color);
+    padding: 0.8rem 1.8rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.collection-content .btn:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: var(--box-shadow);
+}
+
+/* Responsive adjustments for specific elements */
+@media (max-width: 768px) {
+    h1 { font-size: 3.6rem; }
+    h2 { font-size: 2.8rem; }
+    h3 { font-size: 2.2rem; }
+    h4 { font-size: 1.8rem; }
+
+    .btn {
+        padding: 1rem 2rem;
+        font-size: 1.4rem;
+    }
+
+    .section-subtitle {
+        font-size: 1.6rem;
+        margin-bottom: 2rem;
+    }
+
+    .newsletter p {
+        font-size: 1.6rem;
+    }
+
+    .newsletter-form {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .newsletter-form input[type="email"] {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .newsletter-form .subscribe-button {
+        width: 100%;
+    }
+
+    .product-card .product-details h3 {
+        font-size: 1.6rem;
+        height: auto; /* Allow height to adjust on smaller screens */
+        -webkit-line-clamp: unset; /* Remove line clamp */
+        line-clamp: unset; /* Remove standard line clamp */
+    }
+
+    .product-card .price {
+        font-size: 1.8rem;
+    }
+
+    .blog-content h3 {
+        font-size: 1.8rem;
+        min-height: auto;
+        -webkit-line-clamp: unset;
+    }
+
+    .blog-content p {
+        font-size: 1.3rem;
+        min-height: auto;
+        -webkit-line-clamp: unset;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 { font-size: 3rem; }
+    h2 { font-size: 2.4rem; }
+    h3 { font-size: 2rem; }
+
+    .btn-small {
+        padding: 0.6rem 1.2rem;
+        font-size: 1.2rem;
+    }
+
+    .product-image,
+    .category-card img,
+    .blog-card img,
+    .collection-item img {
+        height: 200px; /* Adjust image heights for very small screens */
+    }
+
+    .product-details {
+        padding: 1rem;
+    }
+    .product-details h3 {
+        font-size: 1.5rem;
+    }
+    .price {
+        font-size: 1.6rem;
+    }
+
+    .testimonial-card {
+        padding: 2rem;
+    }
+
+    .newsletter p {
+        font-size: 1.4rem;
+    }
+
+    .newsletter-form input[type="email"],
+    .newsletter-form .subscribe-button {
+        padding: 1rem 1.5rem;
+        font-size: 1.4rem;
+    }
 }

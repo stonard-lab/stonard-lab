@@ -1,6 +1,6 @@
-const productsData = [
+const products = [
   {
-    id: "LSTV03368",
+    id: "TRND1001",
     name: "Ivory Net Anarkali Suit With Zari Work For Eid",
     price: 146.0,
     originalPrice: null,
@@ -26,7 +26,7 @@ const productsData = [
     ]
   },
   {
-    id: "LSTV125927",
+    id: "TRND1002",
     name: "Plain Beige Indo Western Jacket Style Dhoti With Top",
     price: 159.0,
     originalPrice: 267.0,
@@ -53,7 +53,7 @@ const productsData = [
     ]
   },
   {
-    id: "SARV172788",
+    id: "TRND1003",
     name: "Net Light Beige Sequins Embroidered Indo-Western Saree For Eid",
     price: 219.0,
     originalPrice: 407.0,
@@ -78,7 +78,7 @@ const productsData = [
     ]
   },
   {
-    id: "JUTW127",
+    id: "TRND1004",
     name: "Women Ethnic Embellished Gold Jutti",
     price: 92.0,
     originalPrice: 119.0,
@@ -102,7 +102,7 @@ const productsData = [
     ]
   },
   {
-    id: "JSM0136311",
+    id: "LSTV125834",
     name: "Pale Pink Sherwani Mala Layered with Pearl and Kundan",
     price: 39.0,
     originalPrice: 50.0,
@@ -123,7 +123,7 @@ const productsData = [
     ]
   },
   {
-    id: "JUTW133",
+    id: "LSTV125835",
     name: "Sage Green Silk Resham Embroidered Men's Jutti",
     price: 92.0,
     originalPrice: 119.0,
@@ -147,7 +147,7 @@ const productsData = [
     ]
   },
   {
-    id: "JNS0135911",
+    id: "LSTV125836",
     name: "Gold Stone Earing And Necklace Set",
     price: 39.0,
     originalPrice: 60.0,
@@ -168,7 +168,7 @@ const productsData = [
     ]
   },
   {
-    id: "LSTV127805",
+    id: "LSTV125837",
     name: "Georgette Pastel Dark Blue Embroidered Straight Cut Suit",
     price: 133.0,
     originalPrice: 166.0,
@@ -218,7 +218,86 @@ const productsData = [
     images: [
       "/images/LSTV125834.webp"
     ]
+  },
+  {
+    id: "BST1001",
+    name: "Georgette Embroidered Plum Purple Straight Cut Sharara Suit",
+    price: 126.0,
+    originalPrice: 182.0,
+    discount: "31% Off",
+    categories: ["Salwar Kameez", "Sharara Suit"],
+    type: "Embroidered Sharara Suit",
+    style: ["Side Slit"],
+    occasions: ["Wedding Wear", "Guest of Wedding Wear", "Sangeet"],
+    festivals: ["Diwali", "Eid", "Navratri"],
+    fabric: {
+      top: "Georgette",
+      bottom: "Georgette",
+      dupatta: "Net"
+    },
+    color: "Plum Purple",
+    work: ["Resham Work", "Sequins Work", "Thread Work"],
+    components: ["Top (Included Lining)", "Bottom", "Dupatta"],
+    customization: "Up to 58 inches",
+    description: "This spaghetti strap and sleeveless suit is adorned with sequins and resham thread work. Completed with georgette sharara pants in plum purple color with plum purple net dupatta. Sharara pants have resham thread work. Dupatta accentuated with sequins and resham thread work.",
+    colorVariationNotice: true,
+    images: [
+      "/images/LSTV125834.webp"
+    ]
+  },
+  {
+    id: "BST1002",
+    name: "Georgette Embroidered Plum Purple Straight Cut Sharara Suit",
+    price: 126.0,
+    originalPrice: 182.0,
+    discount: "31% Off",
+    categories: ["Salwar Kameez", "Sharara Suit"],
+    type: "Embroidered Sharara Suit",
+    style: ["Side Slit"],
+    occasions: ["Wedding Wear", "Guest of Wedding Wear", "Sangeet"],
+    festivals: ["Diwali", "Eid", "Navratri"],
+    fabric: {
+      top: "Georgette",
+      bottom: "Georgette",
+      dupatta: "Net"
+    },
+    color: "Plum Purple",
+    work: ["Resham Work", "Sequins Work", "Thread Work"],
+    components: ["Top (Included Lining)", "Bottom", "Dupatta"],
+    customization: "Up to 58 inches",
+    description: "This spaghetti strap and sleeveless suit is adorned with sequins and resham thread work. Completed with georgette sharara pants in plum purple color with plum purple net dupatta. Sharara pants have resham thread work. Dupatta accentuated with sequins and resham thread work.",
+    colorVariationNotice: true,
+    images: [
+      "/images/LSTV125834.webp"
+    ]
+  },
+  {
+    id: "BST1003",
+    name: "Georgette Embroidered Plum Purple Straight Cut Sharara Suit",
+    price: 126.0,
+    originalPrice: 182.0,
+    discount: "31% Off",
+    categories: ["Salwar Kameez", "Sharara Suit"],
+    type: "Embroidered Sharara Suit",
+    style: ["Side Slit"],
+    occasions: ["Wedding Wear", "Guest of Wedding Wear", "Sangeet"],
+    festivals: ["Diwali", "Eid", "Navratri"],
+    fabric: {
+      top: "Georgette",
+      bottom: "Georgette",
+      dupatta: "Net"
+    },
+    color: "Plum Purple",
+    work: ["Resham Work", "Sequins Work", "Thread Work"],
+    components: ["Top (Included Lining)", "Bottom", "Dupatta"],
+    customization: "Up to 58 inches",
+    description: "This spaghetti strap and sleeveless suit is adorned with sequins and resham thread work. Completed with georgette sharara pants in plum purple color with plum purple net dupatta. Sharara pants have resham thread work. Dupatta accentuated with sequins and resham thread work.",
+    colorVariationNotice: true,
+    images: [
+      "/images/LSTV125834.webp"
+    ]
   }
+  
 ];
 
-export default productsData;
+export default products;

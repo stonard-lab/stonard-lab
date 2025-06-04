@@ -1,117 +1,224 @@
-/* Header Components */
-.main-header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background-color: var(--white);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
+/* Components Styles */
+
+/* --- Header Components --- */
+
+/* Note: .main-header is now handled by .header in layout.css for sticky behavior and box-shadow.
+   Redundant styles moved/removed. */
 
 .search-container {
     position: relative;
+    /* Styles for the container of the search input and toggle */
 }
 
 .search-input {
-    padding: 1rem 1.5rem;
+    width: 0; /* Initially hidden, controlled by JS/layout.css for expansion */
+    padding: 0.5rem 1rem; /* Adjust padding for better look when expanded */
     border: 1px solid var(--gray-color);
-    border-radius: 4px;
-    width: 250px;
-    transition: var(--transition);
+    border-radius: 20px; /* More rounded for a search bar */
+    transition: width 0.3s ease, padding 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
     font-family: inherit;
+    font-size: 1.6rem;
+    opacity: 0; /* Hidden by default */
+}
+
+.search-input.expanded { /* Class added by JS, controlled by layout.css for width */
+    width: 200px; /* Default expanded width */
+    padding: 0.8rem 1.5rem; /* More generous padding */
+    opacity: 1;
 }
 
 .search-input:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    width: 300px;
+    outline: none; /* Remove default outline */
+    border-color: var(--primary-color); /* Highlight border on focus */
 }
 
-.cart-popup {
+.search-input:focus-visible { /* Accessibility focus state */
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Cart Popup (moved from style.css for component specificity) */
+/* .cart-wrapper (from layout.css) is the parent for positioning */
+.cart-popup-summary { /* Renamed from .cart-popup to match HTML */
     position: absolute;
-    top: 100%;
+    top: 100%; /* Position below the cart icon */
     right: 0;
-    width: 350px;
+    width: 320px; /* Slightly adjusted width for the popup */
     background-color: var(--white);
     box-shadow: var(--box-shadow);
-    border-radius: 4px;
+    border-radius: var(--border-radius); /* Use variable for consistency */
     padding: 2rem;
-    opacity: 0;
+    opacity: 0; /* Hidden by default */
     visibility: hidden;
-    transition: var(--transition);
+    transition: opacity 0.3s ease, visibility 0.3s ease;
     z-index: 100;
+    margin-top: 10px; /* Small space below cart icon */
+    border: 1px solid var(--gray-color); /* Subtle border */
 }
 
-.shopping-cart-container:hover .cart-popup {
+/* Note: The JS handles toggling display/opacity/visibility, not just :hover on parent */
+/* Example for JS interaction (remove if JS handles completely): */
+/* .cart-wrapper:hover .cart-popup-summary {
     opacity: 1;
     visibility: visible;
+} */
+
+.cart-popup-summary h4 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--dark-color);
 }
 
 .cart-items {
-    min-height: 100px;
+    min-height: 80px; /* Adjusted minimum height */
     display: flex;
+    flex-direction: column; /* Stack items */
     align-items: center;
     justify-content: center;
+    text-align: center;
+    font-size: 1.4rem;
+    color: var(--text-light);
+}
+
+.cart-items p {
+    margin: 0; /* Remove default paragraph margin */
 }
 
 .cart-actions {
     display: flex;
+    flex-direction: column; /* Stack buttons */
     gap: 1rem;
     margin-top: 2rem;
 }
 
-.mobile-nav-toggle {
-    display: none;
+.cart-actions .btn {
+    width: 100%; /* Make buttons full width */
 }
 
+/* Mobile Navigation Toggle */
+.hamburger-menu { /* Renamed from .mobile-nav-toggle to match HTML */
+    display: none; /* Controlled by media queries in layout.css */
+    font-size: 2.8rem; /* Larger icon */
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--dark-color);
+    transition: var(--transition);
+    padding: 0.5rem;
+}
+
+.hamburger-menu:hover {
+    color: var(--primary-color);
+}
+
+.hamburger-menu:focus-visible { /* Accessibility focus state */
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Mobile Navigation Menu */
 .mobile-nav {
-    display: none;
-    max-height: 0;
+    display: none; /* Hidden by default, controlled by JS/layout.css */
+    max-height: 0; /* Used for smooth slide animation */
     overflow: hidden;
-    transition: max-height 0.3s ease;
+    transition: max-height 0.3s ease-out;
+    background-color: var(--white);
+    position: absolute;
+    top: 100%; /* Below the header */
+    left: 0;
+    width: 100%;
+    box-shadow: var(--box-shadow);
+    z-index: 999;
 }
 
 .mobile-nav.active {
-    display: block;
-    max-height: 500px;
-    padding: 2rem 0;
+    display: block; /* Show the menu */
+    max-height: 300px; /* Adjust based on content height */
+    padding: 1.5rem 0;
 }
 
-/* Hero Components */
+.mobile-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center; /* Center mobile nav links */
+}
+
+.mobile-nav ul li {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--gray-color);
+}
+
+.mobile-nav ul li:last-child {
+    border-bottom: none;
+}
+
+.mobile-nav ul li a {
+    color: var(--dark-color);
+    font-size: 1.8rem;
+    display: block;
+    padding: 0.5rem 2rem;
+}
+
+.mobile-nav ul li a:hover,
+.mobile-nav ul li a:focus-visible {
+    color: var(--primary-color);
+    background-color: var(--gray-color);
+}
+
+
+/* --- Hero Components --- */
+
+/* Hero content color is handled in layout.css to be white over the image. */
 .hero-content h1 {
-    color: var(--white);
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    /* Styles for h1 already in style.css */
+    /* This rule can be removed if the color is consistent with layout.css */
+    /* color: var(--white); */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Stronger shadow for readability */
     margin-bottom: 2rem;
 }
 
 .hero-content p {
-    color: var(--white);
+    /* Styles for p already in style.css */
+    /* color: var(--white); */
     font-size: 2rem;
     margin-bottom: 3rem;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4); /* Stronger shadow */
 }
 
-.hero-cta {
-    display: flex;
-    gap: 2rem;
+.hero-cta { /* This class is on a single button in HTML, not a flex container */
+    /* If this was a wrapper for multiple buttons, it would be flex.
+       Since it's a single CTA, these styles might be redundant. */
+    /* display: flex; */
+    /* gap: 2rem; */
 }
 
-/* Product Components */
+
+/* --- Product Components --- */
+/* Note: Much of .product-card was defined in style.css.
+   This section focuses on unique aspects or overrides. */
+
 .product-card {
-    background-color: var(--white);
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-    transition: var(--transition);
-    position: relative;
+    /* Base styles are in style.css. Adding specific component overrides here. */
+    border: 1px solid var(--gray-color); /* Add a light border */
+    border-radius: var(--border-radius); /* Use variable */
+    box-shadow: var(--box-shadow); /* Consistent shadow */
+    display: flex; /* Ensure content stacks vertically */
+    flex-direction: column;
 }
 
 .product-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1); /* Slightly adjusted shadow */
 }
 
-.product-image {
-    height: 350px;
+.product-card:focus-within { /* Accessibility: highlight entire card when child is focused */
+    box-shadow: 0 0 0 3px var(--primary-color); /* Use primary color for focus */
+    outline: none; /* Remove default outline */
+}
+
+.product-image { /* Matches HTML structure */
+    height: 280px; /* Adjusted height for better consistency with other cards */
     overflow: hidden;
     position: relative;
 }
@@ -120,63 +227,97 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: var(--transition);
+    transition: transform 0.3s ease;
 }
 
 .product-card:hover .product-image img {
-    transform: scale(1.05);
+    transform: scale(1.05); /* Zoom effect on image hover */
 }
 
-.product-badge {
+.product-badge { /* Positioned on top-left */
     position: absolute;
     top: 1rem;
     left: 1rem;
-    background-color: var(--primary-color);
+    background-color: var(--secondary-color); /* Changed to secondary for distinction */
     color: var(--white);
-    padding: 0.5rem 1rem;
+    padding: 0.4rem 0.8rem; /* Adjusted padding */
     border-radius: 4px;
     font-size: 1.2rem;
     font-weight: 600;
+    z-index: 1; /* Ensure badge is above image */
 }
 
-.product-content {
-    padding: 2rem;
+.product-details { /* Renamed from .product-content to match HTML */
+    padding: 1.5rem; /* Consistent padding */
+    text-align: center;
+    display: flex; /* Flex to manage content inside */
+    flex-direction: column;
+    flex-grow: 1; /* Allows details section to grow */
+    justify-content: space-between; /* Push actions to bottom */
 }
 
-.product-title {
+.product-details h3 { /* Renamed from .product-title to match HTML */
     font-size: 1.8rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.8rem;
     color: var(--dark-color);
+    line-height: 1.3;
+    min-height: 4.6rem; /* Ensures consistency for 2 lines of text */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
-.product-price {
+.price { /* Renamed from .product-price to match HTML */
     display: flex;
     align-items: center;
-    gap: 1rem;
+    justify-content: center; /* Center the price */
+    gap: 0.8rem; /* Adjusted gap */
     margin-bottom: 1.5rem;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary-color);
 }
 
 .current-price {
     font-weight: 700;
     color: var(--primary-color);
-    font-size: 2rem;
+    font-size: 2.2rem; /* Slightly larger */
 }
 
 .original-price {
     text-decoration: line-through;
     color: var(--text-light);
+    font-size: 1.6rem; /* Adjusted font size */
 }
 
-.product-actions {
+.product-actions { /* Typically a wrapper for buttons */
     display: flex;
+    justify-content: center; /* Center action buttons */
     gap: 1rem;
+    margin-top: auto; /* Push actions to the bottom */
 }
 
-/* Category Components */
+.product-actions .btn { /* Style buttons within actions */
+    flex: 1; /* Distribute space evenly if multiple buttons */
+    /* Keep other button styles from style.css */
+}
+
+.product-actions button:focus-visible { /* Accessibility focus state */
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+
+/* --- Category Components --- */
+/* Note: Much of .category-card was defined in style.css.
+   This section focuses on unique aspects or overrides. */
+
 .category-card {
     display: block;
-    height: 350px;
-    border-radius: 8px;
+    height: 300px; /* Adjusted height for consistency */
+    border-radius: var(--border-radius);
     overflow: hidden;
     position: relative;
     box-shadow: var(--box-shadow);
@@ -185,483 +326,587 @@
 
 .category-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* More prominent shadow */
 }
 
-.category-card-image {
+.category-card:focus-within { /* Accessibility: highlight entire card */
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.category-card img { /* Renamed from .category-card-image to match HTML */
+    width: 100%;
     height: 100%;
-    background-size: cover;
-    background-position: center;
-    transition: var(--transition);
+    object-fit: cover;
+    transition: transform 0.3s ease;
 }
 
-.category-card:hover .category-card-image {
-    transform: scale(1.05);
+.category-card:hover img { /* Renamed from .category-card-image */
+    transform: scale(1.05); /* Zoom effect on image hover */
 }
 
-.category-card-content {
+.category-content { /* Renamed from .category-card-content to match HTML */
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 2rem;
+    padding: 1.5rem; /* Adjusted padding */
     background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
     color: var(--white);
+    text-align: center;
 }
 
-.category-card-content h3 {
+.category-content h3 {
     color: var(--white);
     margin-bottom: 0.5rem;
+    font-size: 2.2rem; /* Adjusted font size */
 }
 
-/* Wedding Collection Components */
-.wedding-grid {
+.category-content p {
+    font-size: 1.4rem; /* Adjusted font size */
+    margin-bottom: 1rem;
+}
+
+
+/* --- Wedding Collection Components --- */
+
+.wedding-collection { /* Section wrapper from layout.css */
+    /* Add any specific section styling here if needed */
+}
+
+.collection-grid { /* Renamed from .wedding-grid to match HTML */
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
     gap: 2rem;
     margin-top: 2rem;
 }
 
-.wedding-item {
-    height: 400px;
+.collection-item { /* Renamed from .wedding-item to match HTML */
+    height: 350px; /* Adjusted height for consistency */
     position: relative;
-    border-radius: 8px;
+    border-radius: var(--border-radius);
     overflow: hidden;
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
 }
 
-.wedding-item img {
+.collection-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.collection-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    filter: brightness(0.8); /* Darken image for text readability */
+    transition: filter 0.3s ease;
 }
 
-.wedding-overlay {
+.collection-item:hover img {
+    filter: brightness(0.95); /* Slightly brighter on hover */
+}
+
+.collection-content { /* Renamed from .wedding-overlay to match HTML */
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.4);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2)); /* Stronger gradient */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end; /* Align content to the bottom */
     align-items: center;
     color: var(--white);
     padding: 2rem;
     text-align: center;
 }
 
-.wedding-overlay h4 {
-    font-size: 2.4rem;
-    margin-bottom: 2rem;
+.collection-content h3 { /* Renamed from h4 to match HTML */
+    font-size: 2.6rem; /* Larger heading */
+    margin-bottom: 1rem; /* Reduced margin */
     color: var(--white);
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
 }
 
-/* Testimonial Components */
-.review-carousel {
-    display: flex;
-    gap: 3rem;
-    margin-top: 3rem;
+.collection-content .btn {
+    /* Style from style.css should apply. */
+    margin-top: 1.5rem; /* Space above button */
 }
 
-.review-item {
-    flex: 1;
+
+/* --- Testimonial Components --- */
+
+.customer-reviews { /* Section wrapper from layout.css */
+    /* Add any specific section styling here if needed */
+}
+
+.testimonial-grid { /* Renamed from .review-carousel to match HTML */
+    display: grid; /* Changed to grid for more consistent wrapping */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem; /* Adjusted gap */
+    margin-top: 2rem; /* Adjusted margin */
+}
+
+.testimonial-card { /* Renamed from .review-item to match HTML */
     background-color: var(--white);
-    padding: 3rem;
-    border-radius: 8px;
+    padding: 2.5rem; /* Adjusted padding */
+    border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
+    text-align: center;
+    border: 1px solid var(--gray-color); /* Subtle border */
+    transition: var(--transition);
+}
+
+.testimonial-card:hover {
+    transform: translateY(-3px); /* Subtle lift on hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
 
 .rating {
     color: var(--secondary-color);
     margin-bottom: 1.5rem;
+    font-size: 1.8rem; /* Size of stars/rating */
 }
 
-.review-author {
+.testimonial-text { /* Renamed from .review-item p, etc. */
+    font-size: 1.6rem;
+    font-style: italic;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+.testimonial-author { /* Renamed from .review-author to match HTML */
+    margin-top: 2rem;
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+.testimonial-author strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 1.6rem;
+}
+
+.testimonial-author span { /* For location/title */
+    display: block;
+    font-size: 1.4rem;
+    color: var(--text-light);
+    font-weight: 400;
+}
+
+
+/* --- Blog Components --- */
+
+.blog-section { /* Section wrapper from layout.css */
+    /* Add any specific section styling here if needed */
+}
+
+.blog-grid { /* Renamed from .blog-posts-container to match HTML */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
+    gap: 2.5rem; /* Adjusted gap */
     margin-top: 2rem;
 }
 
-.review-author strong {
-    display: block;
-    margin-bottom: 0.5rem;
-}
-
-/* Blog Components */
-.blog-posts-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3rem;
-    margin-top: 3rem;
-}
-
-.blog-post-card {
+.blog-card { /* Renamed from .blog-post-card to match HTML */
     background-color: var(--white);
-    border-radius: 8px;
+    border-radius: var(--border-radius);
     overflow: hidden;
     box-shadow: var(--box-shadow);
     transition: var(--transition);
+    border: 1px solid var(--gray-color); /* Subtle border */
+    display: flex;
+    flex-direction: column; /* Stack content */
 }
 
-.blog-post-card:hover {
+.blog-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-.blog-post-image {
-    height: 250px;
-    position: relative;
-    overflow: hidden;
+.blog-card:focus-within { /* Accessibility focus state */
+    box-shadow: 0 0 0 3px var(--primary-color);
+    outline: none;
 }
 
-.blog-post-image img {
+.blog-card img { /* Renamed from .blog-post-image img to match HTML */
     width: 100%;
-    height: 100%;
+    height: 220px; /* Fixed height for blog images */
     object-fit: cover;
-    transition: var(--transition);
+    display: block;
+    transition: transform 0.3s ease;
 }
 
-.blog-post-card:hover .blog-post-image img {
+.blog-card:hover img {
     transform: scale(1.05);
 }
 
-.blog-post-category {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
+.blog-category { /* Renamed from .blog-post-category to match HTML */
+    display: inline-block; /* Changed to inline-block for better flow */
     background-color: var(--primary-color);
     color: var(--white);
-    padding: 0.5rem 1rem;
+    padding: 0.4rem 0.8rem;
     border-radius: 4px;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 1rem; /* Space below category badge */
 }
 
-.blog-post-content {
-    padding: 2rem;
-}
-
-.post-excerpt {
-    color: var(--text-light);
-    margin-bottom: 1.5rem;
-}
-
-.post-meta {
+.blog-content { /* Renamed from .blog-post-content to match HTML */
+    padding: 1.5rem;
     display: flex;
-    gap: 1.5rem;
-    color: var(--text-light);
+    flex-direction: column;
+    flex-grow: 1; /* Allow content to grow */
+}
+
+.blog-content h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+    min-height: 5.2rem; /* Ensures 2 lines of text */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.blog-content p { /* Renamed from .post-excerpt to match HTML */
     font-size: 1.4rem;
+    color: var(--text-light);
     margin-bottom: 1.5rem;
+    line-height: 1.5;
+    min-height: 6.3rem; /* Ensures 3 lines of text */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 
-/* Newsletter Components */
-.newsletter-section {
+.blog-meta { /* Renamed from .post-meta to match HTML */
+    display: flex;
+    gap: 1rem; /* Adjusted gap */
+    color: var(--text-light);
+    font-size: 1.3rem; /* Adjusted font size */
+    margin-bottom: 1.5rem;
+    margin-top: auto; /* Push meta to bottom if content varies */
+}
+
+.blog-meta span:not(:last-child)::after {
+    content: " | ";
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.read-more { /* Already styled in style.css */
+    margin-top: 0.5rem; /* Space below meta */
+}
+
+
+/* --- Newsletter Components --- */
+/* Note: .newsletter-section from provided code is too similar to the .newsletter in style.css.
+   Consolidating under the .newsletter section from style.css */
+
+.newsletter { /* This class is for the section itself */
     background-color: var(--primary-color);
-    padding: 5rem 0;
+    padding: 5rem 0; /* Consistent padding */
     color: var(--white);
-}
-
-.newsletter-content {
-    max-width: 600px;
-    margin: 0 auto;
     text-align: center;
 }
 
-.newsletter-content h2 {
+.newsletter h2 { /* Targeting h2 within newsletter */
     color: var(--white);
     margin-bottom: 1.5rem;
 }
 
-.newsletter-content p {
+.newsletter p { /* Targeting p within newsletter */
     margin-bottom: 3rem;
     font-size: 1.8rem;
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .newsletter-form {
     display: flex;
     max-width: 500px;
     margin: 0 auto;
+    border-radius: 4px; /* Apply border-radius to container */
+    overflow: hidden; /* Ensures input/button corners are rounded */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.newsletter-form input {
-    flex: 1;
+.newsletter-form input[type="email"] { /* Specific input type */
+    flex: 1; /* Takes up remaining space */
     padding: 1.5rem;
-    border: none;
-    border-radius: 4px 0 0 4px;
+    border: none; /* Remove individual borders */
+    /* border-radius: 4px 0 0 4px; Removed as container handles it */
     font-family: inherit;
+    font-size: 1.6rem;
+    outline: none;
+    color: var(--dark-color);
 }
 
-.newsletter-form button {
-    border-radius: 0 4px 4px 0;
-}
-
-/* Footer Components */
-.main-footer {
-    background-color: var(--dark-color);
+.newsletter-form button { /* Targets the button */
+    /* border-radius: 0 4px 4px 0; Removed as container handles it */
+    background-color: var(--secondary-color);
     color: var(--white);
+    padding: 1.5rem 3rem; /* Adjusted padding */
+    font-size: 1.6rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+    flex-shrink: 0; /* Prevent button from shrinking */
 }
 
-.footer-top {
-    padding: 5rem 0;
+.newsletter-form button:hover {
+    background-color: var(--primary-dark); /* Subtle change on hover */
+    transform: none; /* Remove translate effect for input/button combo */
+    box-shadow: none; /* Remove shadow here, container has it */
 }
 
-.footer-col h4 {
-    color: var(--white);
+.newsletter-form input:focus-visible { /* Accessibility focus state */
+    outline: 2px solid var(--white);
+    outline-offset: -2px; /* Inset outline */
+}
+
+.newsletter-form button:focus-visible { /* Accessibility focus state */
+    outline: 2px solid var(--white);
+    outline-offset: -2px; /* Inset outline */
+}
+
+
+/* --- Footer Components --- */
+
+/* Note: .main-footer is now handled by .footer in layout.css for background and padding. */
+/* .footer-top is part of .footer in layout.css grid now. */
+
+.footer-column h4 { /* Renamed from .footer-col h4 to match HTML */
+    color: var(--white); /* Ensures heading is white */
     margin-bottom: 2rem;
     font-size: 1.8rem;
 }
 
-.footer-col ul li {
+.footer-column ul {
+    list-style: none; /* Ensure no bullets */
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column ul li {
     margin-bottom: 1rem;
 }
 
-.footer-col ul li a {
-    color: rgba(255, 255, 255, 0.7);
+.footer-column ul li a {
+    color: rgba(255, 255, 255, 0.7); /* Lighter text for links */
     transition: var(--transition);
+    font-size: 1.5rem;
 }
 
-.footer-col ul li a:hover {
+.footer-column ul li a:hover {
     color: var(--white);
-    padding-left: 5px;
+    padding-left: 5px; /* Subtle slide effect */
 }
 
-.footer-about {
-    color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 2rem;
+.footer-column ul li a:focus-visible { /* Accessibility focus state */
+    outline: 2px solid var(--white);
+    outline-offset: 2px;
 }
 
-.footer-contact p {
+.footer-brand p, /* Renamed from .footer-about p to match HTML */
+.footer-brand a {
     color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    line-height: 1.6;
+}
+
+.contact-info p { /* Explicitly target contact info paragraphs */
     display: flex;
     align-items: center;
     gap: 1rem;
     margin-bottom: 1rem;
 }
 
-.footer-bottom {
-    background-color: rgba(0, 0, 0, 0.2);
-}
+/* Note: .footer-bottom is now handled by layout.css */
 
 .payment-methods,
-.social-media-icons {
+.social-links { /* Renamed from .social-media-icons to match HTML */
     display: flex;
     align-items: center;
     gap: 1.5rem;
 }
 
-.payment-methods i,
-.social-media-icons a {
+.payment-methods img { /* Target the payment icons image */
+    height: 24px; /* Set a consistent height */
+    vertical-align: middle;
+}
+
+.social-links a {
     font-size: 2.4rem;
     color: rgba(255, 255, 255, 0.7);
     transition: var(--transition);
 }
 
-.social-media-icons a:hover {
+.social-links a:hover {
     color: var(--white);
 }
 
 .copyright {
     color: rgba(255, 255, 255, 0.7);
+    font-size: 1.4rem;
 }
 
-/* Responsive Components */
+/* --- Responsive Adjustments for Components --- */
+
 @media (max-width: 1024px) {
-    .blog-posts-container {
-        grid-template-columns: repeat(2, 1fr);
+    .blog-grid { /* Renamed from .blog-posts-container */
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+    }
+
+    .newsletter-form {
+        max-width: 400px;
     }
 }
 
 @media (max-width: 768px) {
-    .desktop-nav {
+    /* Header related components */
+    .desktop-nav { /* Should be controlled by layout.css */
         display: none;
     }
-    
-    .mobile-nav-toggle {
+
+    .hamburger-menu { /* Should be controlled by layout.css */
         display: block;
     }
-    
-    .search-input {
-        width: 200px;
+
+    .search-input.expanded { /* Adjusted for mobile */
+        width: 180px; /* Smaller expanded width on mobile */
+        padding: 0.6rem 1.2rem;
     }
-    
-    .search-input:focus {
-        width: 200px;
-    }
-    
+
     .hero-cta {
-        flex-direction: column;
+        flex-direction: column; /* Stack CTA buttons */
         gap: 1rem;
+        align-items: center; /* Center stacked buttons */
     }
-    
-    .blog-posts-container {
-        grid-template-columns: 1fr;
+
+    .blog-grid { /* Renamed from .blog-posts-container */
+        grid-template-columns: 1fr; /* Single column on mobile */
     }
-    
+
     .newsletter-form {
-        flex-direction: column;
+        flex-direction: column; /* Stack newsletter form elements */
         gap: 1rem;
+        max-width: 90%;
     }
-    
-    .newsletter-form input,
+
+    .newsletter-form input[type="email"],
     .newsletter-form button {
         width: 100%;
-        border-radius: 4px;
+        border-radius: 4px; /* Apply border-radius to both when stacked */
+    }
+
+    /* Product/Category/Wedding/Testimonial cards */
+    .product-image,
+    .category-card img,
+    .collection-item img,
+    .blog-card img {
+        height: 220px; /* Adjust image heights for consistency on mobile */
+    }
+
+    .product-details,
+    .blog-content {
+        padding: 1.2rem;
+    }
+
+    .product-details h3,
+    .blog-content h3 {
+        font-size: 1.6rem;
+        min-height: auto; /* Allow height to adjust */
+        -webkit-line-clamp: unset; /* Remove line clamp */
+    }
+
+    .product-details .price,
+    .testimonial-text {
+        font-size: 1.6rem;
+    }
+
+    .blog-content p {
+        font-size: 1.3rem;
+        min-height: auto;
+        -webkit-line-clamp: unset;
+    }
+
+    .collection-content h3 {
+        font-size: 2rem;
+    }
+
+    .testimonial-card {
+        padding: 2rem;
     }
 }
 
-/* Utility Components */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-}
-
-.grid {
-    display: grid;
-    gap: 2rem;
-}
-
-.btn {
-    padding: 1rem 2rem;
-    border: none;
-    border-radius: 4px;
-    font-size: 1.6rem;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.btn-primary {
-    background-color: var(--primary-color);
-    color: var(--white);
-}
-
-.btn-primary:hover,
-.btn-primary:focus-visible {
-    background-color: var(--primary-dark);
-}
-
-/* Header Updates */
-.search-input:focus-visible {
-    border-color: var(--primary-color);
-    outline: 2px solid var(--primary-color);
-}
-
-.mobile-nav-toggle:focus-visible {
-    outline: 2px solid var(--primary-color);
-}
-
-/* Product Components */
-.product-card:focus-within {
-    box-shadow: 0 0 0 3px var(--primary-light);
-}
-
-.product-actions button:focus-visible {
-    outline: 2px solid var(--primary-color);
-}
-
-/* Category Card Enhancements */
-.category-card:focus-within {
-    outline: 2px solid var(--primary-color);
-}
-
-/* Blog Component Enhancements */
-.blog-post-card:focus-within {
-    box-shadow: 0 0 0 3px var(--primary-color);
-}
-
-/* Newsletter Improvements */
-.newsletter-form input:focus-visible {
-    outline: 2px solid var(--white);
-}
-
-.newsletter-form button:focus-visible {
-    outline: 2px solid var(--white);
-}
-
-/* Footer Enhancements */
-.footer-col ul li a:focus-visible {
-    outline: 2px solid var(--white);
-}
-
-/* Responsive Enhancements */
 @media (max-width: 600px) {
-    .grid {
+    /* Grid (general purpose grid, if used outside components) */
+    .grid { /* This appears to be a generic grid utility, not specific to components */
         grid-template-columns: 1fr;
     }
 
-    .wedding-grid {
+    .collection-grid { /* Wedding grid, renamed to match HTML */
         grid-template-columns: 1fr;
     }
 
-    .review-carousel {
+    .testimonial-grid { /* Renamed from .review-carousel to match HTML */
+        flex-direction: column; /* Stack testimonials */
+    }
+
+    /* Footer adjustments for smaller screens */
+    .footer-container-grid { /* From layout.css, assuming it's the grid for columns */
+        grid-template-columns: 1fr; /* Single column on very small screens */
+    }
+    .footer-column { /* Ensure columns take full width */
+        text-align: center;
+    }
+    .footer-column ul {
+        align-items: center; /* Center list items if stacked */
+    }
+    .footer-column ul li a {
+        padding-left: 0; /* Remove padding animation if text is centered */
+    }
+    .footer-bottom {
         flex-direction: column;
+        text-align: center;
+    }
+    .payment-methods,
+    .social-links {
+        justify-content: center; /* Center payment/social icons */
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+    .cart-popup-summary {
+        width: 90%; /* Larger popup on very small screens */
+        left: 5%; /* Center it roughly */
+        right: 5%;
     }
 
-    .footer-top {
-        padding: 3rem 1rem;
+    .product-image,
+    .category-card img,
+    .collection-item img,
+    .blog-card img {
+        height: 180px; /* Further reduce image heights */
     }
-}
 
-
-
-.product-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-  padding: 1rem 0;
-}
-
-@media (min-width: 576px) {
-  .product-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 768px) {
-  .product-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (min-width: 992px) {
-  .product-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-.product-card {
-  background: #fff;
-  border: 1px solid #e0e0e0;
-  border-radius: 10px;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
-  flex-direction: column;
-}
-
-.product-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-}
-
-.product-card img {
-  width: 50%;
-  height: auto;
-  object-fit: cover;
-  display: block;
-}
-
-.product-info {
-  padding: 1rem;
-  text-align: center;
-}
-
-.product-name {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 0.5rem;
-}
-
-.product-price {
-  font-size: 1rem;
-  font-weight: bold;
-  color: #b12704;
+    .newsletter-form input[type="email"],
+    .newsletter-form button {
+        font-size: 1.4rem;
+        padding: 1.2rem;
+    }
 }

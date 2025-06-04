@@ -1,41 +1,159 @@
 /* Layout Styles */
 .container {
-    max-width: 1440px;
+    max-width: 1440px; /* Consistent with wireframe's general max-width */
     margin: 0 auto;
-    padding: 0 2rem;
-    width: 100%;
+    padding: 0 2rem; /* Adds padding on sides for smaller screens */
+    width: 100%; /* Ensures it takes full width up to max-width */
 }
 
 /* Header Layout */
-.header-content {
+.header-container { /* Changed from .header-content to .header-container to match HTML */
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1.5rem 0;
+    padding: 1.5rem 0; /* Consistent with original */
     position: relative;
 }
 
-.logo {
-    flex: 0 0 180px;
-}
+/* .logo ruleset removed because it was empty */
 
 .main-nav.desktop-nav ul {
     display: flex;
-    gap: 2rem;
+    gap: 2rem; /* Consistent with original */
+    list-style: none; /* Ensure no default list bullets */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
 }
 
 .header-actions {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1.5rem; /* Consistent with original */
 }
+
+/* User Utilities within header-actions */
+.user-utilities {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Spacing between account, wishlist, search icons */
+}
+
+.user-utilities .utility-icon {
+    font-size: 1.25rem; /* Standard icon size */
+    color: var(--color-text); /* Define a text color variable in style.css */
+    text-decoration: none;
+}
+
+.user-utilities .utility-icon:hover {
+    color: var(--color-primary); /* Define a primary color variable */
+}
+
+/* Search Bar (within header-actions) */
+.search-container {
+    position: relative;
+    display: flex; /* To align toggle and input if needed for more complex designs */
+    align-items: center;
+}
+
+.search-toggle {
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    color: var(--color-text);
+    cursor: pointer;
+    padding: 0;
+    line-height: 1; /* Align icon vertically */
+}
+
+.search-toggle:hover {
+    color: var(--color-primary);
+}
+
+.search-input {
+    width: 0; /* Hidden by default */
+    opacity: 0;
+    visibility: hidden;
+    transition: width 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    border: 1px solid var(--color-border); /* Define border color */
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--border-radius); /* Define border-radius variable */
+    margin-left: 0.5rem; /* Space between icon and input */
+}
+
+.search-input.expanded { /* Class added by JS on click */
+    width: 200px; /* Adjust as needed */
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* Shopping Cart (within header-actions) */
+.cart-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.cart-button {
+    font-size: 1.5rem; /* Slightly larger for prominence */
+    color: var(--color-heading); /* Or consistent text color */
+    text-decoration: none;
+    position: relative;
+    padding: 0.25rem; /* Area for hover */
+    display: flex; /* To align icon and count */
+    align-items: center;
+}
+
+.cart-button:hover {
+    color: var(--color-primary);
+}
+
+.cart-count {
+    background-color: var(--color-primary); /* Define primary color for badge */
+    color: white;
+    font-size: 0.75rem;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 0.2em 0.5em; /* Adjust for circular shape */
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    line-height: 1; /* Center text vertically */
+}
+
+.cart-popup-summary {
+    position: absolute;
+    top: 150%; /* Position below the cart icon */
+    right: 0;
+    background-color: white;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    min-width: 250px;
+    box-shadow: var(--shadow-small); /* Define shadow variable */
+    z-index: 100; /* Ensure it's above other content */
+    display: none; /* Hidden by default, shown by JS on hover */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* For actual JS hover, you might toggle a class like .cart-popup-summary.visible */
+.cart-button:hover + .cart-popup-summary,
+.cart-popup-summary:hover {
+    display: block; /* For simple CSS hover */
+    opacity: 1;
+    visibility: visible;
+}
+
 
 /* Hero Layout */
 .hero-section {
     position: relative;
-    min-height: 600px;
+    min-height: 600px; /* Maintain minimum height */
     display: flex;
-    align-items: center;
+    align-items: center; /* Vertically center content */
+    padding: 8rem 0; /* Add padding to push content from top/bottom and make space for image overlay */
 }
 
 .hero-image {
@@ -44,90 +162,432 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-size: cover;
-    background-position: center;
+    /* background-size: cover; background-position: center; - These were for background-image, now we have an <img> tag */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    object-position: center; /* Centers the image within the area */
+    z-index: 1; /* Behind the content */
 }
 
 .hero-content {
     position: relative;
-    z-index: 2;
-    max-width: 600px;
+    z-index: 2; /* Above the image */
+    max-width: 600px; /* Consistent with original */
+    color: white; /* Text color for hero content, assuming a dark overlay or image */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Optional: add text shadow for readability */
+    margin-left: 2rem; /* Add some left margin in desktop view */
 }
 
-/* Product Grid Layout */
-.product-grid {
+/* Product Grid Layout (General for product cards) */
+.products-grid { /* Changed from .product-grid to .products-grid to match HTML */
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 2rem;
+    gap: 2rem; /* Consistent with original */
+    margin-top: 2rem; /* Add some top margin below section header */
 }
+
+/* Specific Layout for Horizontal New Arrivals */
+.horizontal-scroll-grid {
+    display: flex; /* Use flexbox for horizontal scroll */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    gap: 2rem;
+    padding-bottom: 1rem; /* Space for scrollbar */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    scroll-snap-type: x mandatory; /* Optional: snap to items */
+}
+
+.horizontal-scroll-grid .product-card {
+    flex: 0 0 300px; /* Fixed width for each card in scroll, adjust as needed */
+    scroll-snap-align: start; /* Optional: align items at start when snapping */
+}
+
 
 /* Section Layout */
 .section-padding {
-    padding: 5rem 0;
+    padding: 5rem 0; /* Consistent with original */
 }
 
 .bg-light {
-    background-color: #f9f9f9;
+    background-color: #f9f9f9; /* Consistent with original */
 }
 
 .text-center {
-    text-align: center;
+    text-align: center; /* Consistent with original */
 }
 
 .section-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 3rem;
+    margin-bottom: 3rem; /* Consistent with original */
 }
 
 /* Category Grid Layout */
-.category-grid {
+.categories-grid { /* Changed from .category-grid to .categories-grid to match HTML */
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-    margin-top: 3rem;
+    gap: 2rem; /* Consistent with original */
+    margin-top: 3rem; /* Consistent with original */
 }
+
+.category-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-small);
+}
+
+.category-card img {
+    width: 100%;
+    height: 250px; /* Fixed height for consistency */
+    object-fit: cover;
+    display: block;
+}
+
+.category-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0)); /* Gradient overlay */
+    color: white;
+}
+
+.category-content h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    color: white; /* Ensure heading is visible */
+}
+
+.category-content .btn {
+    margin-top: 0.5rem;
+    display: inline-block; /* Make button behave inline */
+    color: white; /* Button text color */
+    border: 1px solid white; /* Button border */
+    background: none; /* Transparent background */
+}
+
+/* Wedding Collection Layout (positioned next to trending) */
+.wedding-collection {
+    margin-top: 4rem; /* Spacing from previous section */
+}
+
+.wedding-collection .collection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.collection-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-small);
+}
+
+.collection-item img {
+    width: 100%;
+    height: 350px; /* Larger image for wedding collection */
+    object-fit: cover;
+    display: block;
+}
+
+.collection-item .collection-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.5rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.2));
+    color: white;
+    text-align: center;
+}
+
+.collection-item .collection-content h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+/* Social Proof Layout */
+.social-proof .testimonial-grid,
+.blog-section .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+/* Newsletter Layout */
+.newsletter {
+    background-color: var(--color-light-grey); /* Or a specific light background */
+    text-align: center;
+    padding: 4rem 0;
+}
+
+.newsletter h2 {
+    margin-bottom: 1rem;
+}
+
+.newsletter p {
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+}
+
+.newsletter-form {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.newsletter-form input {
+    flex-grow: 1;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+}
+
+.newsletter-form .subscribe-button {
+    flex-shrink: 0;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border-radius: var(--border-radius);
+    /* Button styles from components.css will apply */
+}
+
 
 /* Footer Layout */
-.footer-columns {
+.footer-container-grid { /* Changed from .footer-columns to .footer-container-grid to match HTML */
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Flexible columns */
+    gap: 3rem; /* Consistent with original */
+    padding: 3rem 0; /* Add padding inside footer container */
 }
 
-.footer-bottom-content {
+.footer-column h4 {
+    margin-bottom: 1.5rem;
+    color: var(--color-heading);
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 0.75rem;
+}
+
+.footer-column ul li a {
+    color: var(--color-footer-text); /* Define a footer text color */
+    text-decoration: none;
+}
+
+.footer-column ul li a:hover {
+    color: var(--color-primary);
+}
+
+.footer-brand p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.footer-brand .contact-info p {
+    margin-bottom: 0.5rem;
+}
+
+.footer-brand .whatsapp-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    color: #25D366; /* WhatsApp green */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.footer-brand .whatsapp-link:hover {
+    text-decoration: underline;
+}
+
+.footer-bottom { /* Changed from .footer-bottom-content to .footer-bottom to match HTML */
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem 0;
+    border-top: 1px solid var(--color-border-light); /* Light border above bottom section */
+    margin-top: 2rem; /* Space from columns above */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 1rem; /* Space between items when wrapping */
 }
+
+.footer-bottom .copyright {
+    font-size: 0.9rem;
+    color: var(--color-footer-text);
+}
+
+.footer-bottom .payment-methods img {
+    max-height: 25px; /* Adjust size of payment icons */
+}
+
+.footer-bottom .social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.footer-bottom .social-links a {
+    font-size: 1.5rem;
+    color: var(--color-footer-text);
+    text-decoration: none;
+}
+
+.footer-bottom .social-links a:hover {
+    color: var(--color-primary);
+}
+
 
 /* Responsive Grid Adjustments */
 @media (max-width: 1024px) {
-    .category-grid {
+    .container {
+        padding: 0 1.5rem;
+    }
+    .hero-section {
+        min-height: 500px;
+        padding: 6rem 0;
+    }
+    .hero-content {
+        margin-left: 1.5rem;
+        max-width: 500px;
+    }
+    .categories-grid { /* Matched HTML class */
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer-container-grid { /* Matched HTML class */
         grid-template-columns: repeat(2, 1fr);
     }
     
-    .footer-columns {
-        grid-template-columns: repeat(2, 1fr);
+    .social-proof .testimonial-grid,
+    .blog-section .blog-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
 }
 
 @media (max-width: 768px) {
-    .header-content {
+    .header-container { /* Matched HTML class */
         padding: 1rem 0;
     }
     
-    .category-grid,
-    .footer-columns {
+    .main-nav.desktop-nav {
+        display: none; /* Hide desktop nav on mobile */
+    }
+
+    .hamburger-menu {
+        display: block; /* Show hamburger menu on mobile (needs to be styled in components.css) */
+        font-size: 1.5rem;
+        border: none;
+        background: none;
+        color: var(--color-text);
+        cursor: pointer;
+    }
+
+    .hero-section {
+        min-height: 400px;
+        padding: 4rem 0;
+        text-align: center; /* Center hero content on mobile */
+        justify-content: center; /* Center horizontally */
+    }
+
+    .hero-content {
+        margin: 0 auto; /* Center hero content */
+        padding: 0 1rem;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+
+    .categories-grid,
+    .footer-container-grid { /* Matched HTML class */
         grid-template-columns: 1fr;
     }
     
-    .footer-bottom-content {
+    .footer-bottom { /* Matched HTML class */
         flex-direction: column;
         gap: 1rem;
         text-align: center;
     }
+
+    .footer-bottom .social-links {
+        justify-content: center; /* Center social links */
+    }
+
+    .newsletter-form {
+        flex-direction: column;
+    }
+
+    .newsletter-form input,
+    .newsletter-form .subscribe-button {
+        width: 100%;
+    }
 }
 
+@media (max-width: 480px) {
+    .container {
+        padding: 0 1rem;
+    }
+
+    .header-container {
+        flex-wrap: wrap; /* Allow header items to wrap if space is tight */
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .logo {
+        flex: 1 1 auto; /* Allow logo to take up space and shrink */
+        text-align: center;
+    }
+
+    .header-actions {
+        flex: 1 1 auto;
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    .hero-section {
+        min-height: 300px;
+    }
+
+    .products-grid,
+    .horizontal-scroll-grid .product-card {
+        grid-template-columns: 1fr; /* Single column for very small screens */
+        flex: 0 0 100%; /* For horizontal scroll, make cards full width */
+    }
+
+    .horizontal-scroll-grid {
+        padding-bottom: 0.5rem;
+    }
+
+    .category-card img {
+        height: 200px;
+    }
+
+    .wedding-collection .collection-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .wedding-collection .collection-item img {
+        height: 250px;
+    }
+
+    .social-proof .testimonial-grid,
+    .blog-section .blog-grid {
+        grid-template-columns: 1fr;
+    }
+}
